@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
-require_once 'Litmus/Test.php'
+require_once 'Litmus/Test.php';
 
 /**
  *
