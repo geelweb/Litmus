@@ -18,8 +18,9 @@ class Litmus_Test_Email extends Litmus_Test
     /**
      * Implement the emails/create methode
      *
+     * @return Litmus_Test_Email
      */
-    public function create()
+    public static function create($params)
     {
     }
 

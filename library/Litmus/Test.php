@@ -14,8 +14,6 @@ require_once 'Litmus/Test.php';
  */
 abstract class Litmus_Test 
 {
-    private $_id;
-
     /**
      * Implements the tests and tests/show methods to get
      * all or one test. Return an array of Litmus_Test object or a single 
@@ -56,6 +54,6 @@ abstract class Litmus_Test
     {
     }
 
-    abstract public function create();
+    abstract public static function create($params);
     abstract public static function getClients();
 }

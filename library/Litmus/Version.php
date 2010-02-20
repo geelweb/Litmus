@@ -7,13 +7,13 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
+require_once 'Litmus/Result.php';
+
 /**
  *
  */
 class Litmus_Version 
 {
-    private $_id;
-
     /**
      * Implements the versions and versions/show methods to get all or one 
      * version of a test. Return an array of Litmus_Version objects or a
@@ -39,10 +39,46 @@ class Litmus_Version
 
     public static function create($test_id)
     {
+        $rc = Litmus_RESTful_Client::singleton();
+        $res = $rc->get('tests/' . $test_id . '/versions.xml');
     }
 
     public function poll()
     {
+    }
+
+    public static function load($xml)
+    {
+        if ($xml instanceof DOMElement) {
+            $dom = $xml;
+        } else {
+            $dom = DOMDocument::loadXML($xml);
+        }
+        $lst = $dom->getElementsByTagName('test_set_version');
+        $col = array();
+        foreach($lst as $item) {
+            $obj = new Litmus_Version();
+            foreach ($item->childNodes as $child) {
+                $property = $child->tagName;
+                $obj->$property = $child;
+            }
+            array_push($col, $obj);
+        }
+        return $col;
+    }
+
+    public function __set($property, $value)
+    {
+        switch($property) {
+            case 'version':
+            case 'url_or_guid':
+            case 'received':
+                $this->$property = $value->nodeValue;
+                break;
+            case 'results':
+                $this->$property = Litmus_Result::load($value);
+                break;
+        }
     }
 }
  

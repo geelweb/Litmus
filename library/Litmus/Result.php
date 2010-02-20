@@ -12,8 +12,6 @@
  */
 class Litmus_Result
 {
-    private $_id;
-
     /**
      * Implements the results and results/show methods to get all or one 
      * result of a version of a test. Return an array of Litmus_Result objects 
@@ -26,6 +24,46 @@ class Litmus_Result
      */
     public static function getResults($test_id, $version_id, $result_id=null)
     {
+    }
+
+    public static function load($xml)
+    {
+        if ($xml instanceof DOMElement) {
+            $dom = $xml;
+        } else {
+            $dom = DOMDocument::loadXML($xml);
+        }
+        $lst = $dom->getElementsByTagName('result');
+        $col = array();
+        foreach($lst as $item) {
+            $obj = new Litmus_Result();
+            foreach ($item->childNodes as $child) {
+                $property = $child->tagName;
+                $obj->$property = $child;
+            }
+            array_push($col, $obj);
+        }
+        return $col;
+    }
+
+    public function __set($property, $value)
+    {
+        switch($property) {
+            case 'check_state':
+            case 'error_at':
+            case 'finished_at':
+            case 'id':
+            case 'started_at':
+            case 'test_code':
+            case 'state':
+            case 'result_type':
+                $this->$property = $value->nodeValue;
+                break;
+            case 'testing_application':
+                break;
+            case 'result_images':
+                break;
+        }
     }
 }
  
