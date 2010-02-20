@@ -7,6 +7,8 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
+require_once 'Litmus/RESTful/Server.php';
+
 /**
  *
  */
@@ -23,6 +25,9 @@ class Litmus_RESTful_Client {
     private $_curl_error = null;
     private $_curl_info = null;
 
+    private $_fse = false;
+    private $_server = null;
+
     /**
      * Constructor
      *
@@ -35,7 +40,7 @@ class Litmus_RESTful_Client {
     /**
      * Singleton : return the current instance of the Litmus_RESTful_Client
      *
-     * @return Litmus_RESTful8Client
+     * @return Litmus_RESTful_Client
      */
     public static function singleton()
     {
@@ -56,6 +61,11 @@ class Litmus_RESTful_Client {
         $this->_api_key = $key;
         $this->_api_username = $username;
         $this->_api_password = $password;
+
+        if (isset($opts['enable_fake_server']) && $opts['enable_fake_server']) {
+            $this->_fse = true;
+            $this->_server = new Litmus_RESTful_Server();
+        }
     }
 
     /**
@@ -92,6 +102,7 @@ class Litmus_RESTful_Client {
         $this->_curl_result  = curl_exec($this->_curl_handle);
         $this->_curl_error = curl_error($this->_curl_handle);
         $this->_curl_info = curl_getinfo($this->_curl_handle);
+        print_r($this->_curl_result);
 
         curl_close($this->_curl_handle);
 
@@ -102,6 +113,19 @@ class Litmus_RESTful_Client {
                 $this->_curl_error,
                 $this->_curl_info['http_code']));
         }
+    }
+
+    /**
+     * Perform a fake session calling the Litmus_RESTful_Server to get a fake 
+     * result.
+     *
+     * @return void
+     */
+    private function _performFakeSession($uri, $request=null)
+    {
+        $this->_curl_result  = $this->_server->perform($uri, $request);
+        $this->_curl_error = '';
+        $this->_curl_info = array();
     }
 
     /**
@@ -141,6 +165,10 @@ class Litmus_RESTful_Client {
      */
     public function get($uri)
     {
+        if ($this->_fse) {
+            $this->_performFakeSession($uri);
+            return $this->_curl_result;
+        }
         $this->_initCurlSession($uri);
         $this->_performCurlSession();
         return $this->_curl_result;
@@ -153,6 +181,10 @@ class Litmus_RESTful_Client {
      */
     public function post($uri, $request=null)
     {
+        if ($this->_fse) {
+            $this->_performFakeSession($uri, $request);
+            return $this->_curl_result;
+        }
         $this->_initCurlSession($uri);
         curl_setopt($this->_curl_handle, CURLOPT_POST, true);
         if ($request !== null) {
