@@ -94,6 +94,14 @@ class Litmus_RESTful_Client {
         $this->_curl_info = curl_getinfo($this->_curl_handle);
 
         curl_close($this->_curl_handle);
+
+        if ($this->_curl_info['http_code'] != '200') {
+            throw new Exception(sprintf(
+                'An error occurs calling %s : %s (http_code %s)',
+                $this->_curl_info['url'],
+                $this->_curl_error,
+                $this->_curl_info['http_code']));
+        }
     }
 
     /**
