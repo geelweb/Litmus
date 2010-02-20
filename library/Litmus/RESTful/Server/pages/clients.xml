@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testing_applications type="array">
+  <testing_application>
+    <average_time_to_process type="integer">162</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ie5</application_code>
+    <application_long_name>Explorer 5.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">90</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ie55</application_code>
+    <application_long_name>Explorer 5.5</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">185</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>true</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ie6</application_code>
+    <application_long_name>Explorer 6.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">79</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>true</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ie7</application_code>
+    <application_long_name>Explorer 7.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">112</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>true</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ie8</application_code>
+    <application_long_name>Explorer 8.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">82</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ff1w</application_code>
+    <application_long_name>Firefox 1.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">116</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ff15</application_code>
+    <application_long_name>Firefox 1.5</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">138</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>true</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ff2w</application_code>
+    <application_long_name>Firefox 2.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">83</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>true</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ff3w</application_code>
+    <application_long_name>Firefox 3.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">84</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ff31w</application_code>
+    <application_long_name>Firefox 3.6</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">98</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>op10w</application_code>
+    <application_long_name>Opera 10.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">138</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>nn9w</application_code>
+    <application_long_name>Netscape 9.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">154</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>sa4w</application_code>
+    <application_long_name>Safari 4.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">121</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>fl07w</application_code>
+    <application_long_name>Flock 1.2</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">177</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>fl2</application_code>
+    <application_long_name>Flock 2.0</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">135</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>sm1w</application_code>
+    <application_long_name>Sea Monkey 1.1</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">306</average_time_to_process>
+    <result_type>page</result_type>
+    <popular>false</popular>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>chrome2w</application_code>
+    <application_long_name>Chrome 4.0</application_long_name>
+  </testing_application>
+</testing_applications>

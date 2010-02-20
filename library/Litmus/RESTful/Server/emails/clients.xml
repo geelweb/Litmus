@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testing_applications type="array">
+  <testing_application>
+    <average_time_to_process type="integer">218</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ol2000</application_code>
+    <application_long_name>Outlook 2000</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">103</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ol2002</application_code>
+    <application_long_name>Outlook 2002/XP</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">51</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Hosted</platform_name>
+    <platform_long_name>Hosted or server-based</platform_long_name>
+    <application_code>brightmail</application_code>
+    <application_long_name>Brightmail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">46</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ol2003</application_code>
+    <application_long_name>Outlook 2003</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">104</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Hosted</platform_name>
+    <platform_long_name>Hosted or server-based</platform_long_name>
+    <application_code>messagelabs</application_code>
+    <application_long_name>MessageLabs</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">47</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>ol2007</application_code>
+    <application_long_name>Outlook 2007</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">38</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Hosted</platform_name>
+    <platform_long_name>Hosted or server-based</platform_long_name>
+    <application_code>postini</application_code>
+    <application_long_name>Postini</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">33</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Hosted</platform_name>
+    <platform_long_name>Hosted or server-based</platform_long_name>
+    <application_code>barracuda</application_code>
+    <application_long_name>Barracuda</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">46</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Desktop spam</platform_name>
+    <platform_long_name>Desktop-based spam filters</platform_long_name>
+    <application_code>ol2003spam</application_code>
+    <application_long_name>Outlook 2003</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">47</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Desktop spam</platform_name>
+    <platform_long_name>Desktop-based spam filters</platform_long_name>
+    <application_code>ol2007spam</application_code>
+    <application_long_name>Outlook 2007</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">525</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Desktop spam</platform_name>
+    <platform_long_name>Desktop-based spam filters</platform_long_name>
+    <application_code>gmailnewspam</application_code>
+    <application_long_name>Gmail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">141</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Desktop spam</platform_name>
+    <platform_long_name>Desktop-based spam filters</platform_long_name>
+    <application_code>yahoospam</application_code>
+    <application_long_name>Yahoo! Mail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">299</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Desktop spam</platform_name>
+    <platform_long_name>Desktop-based spam filters</platform_long_name>
+    <application_code>aolonelinespam</application_code>
+    <application_long_name>AOL Mail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">296</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>notes6</application_code>
+    <application_long_name>Lotus Notes 6.5</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">382</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>notes7</application_code>
+    <application_long_name>Lotus Notes 7</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">145</average_time_to_process>
+    <business>true</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>true</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Windows</platform_name>
+    <platform_long_name>Microsoft Windows</platform_long_name>
+    <application_code>notes8</application_code>
+    <application_long_name>Lotus Notes 8</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">303</average_time_to_process>
+    <business>false</business>
+    <result_type>spam</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Hosted</platform_name>
+    <platform_long_name>Hosted or server-based</platform_long_name>
+    <application_code>spamassassin</application_code>
+    <application_long_name>SpamAssassin</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">333</average_time_to_process>
+    <business>false</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Web-based</platform_name>
+    <platform_long_name>Web-based</platform_long_name>
+    <application_code>gmail</application_code>
+    <application_long_name>Gmail (Older version)</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">299</average_time_to_process>
+    <business>false</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Web-based</platform_name>
+    <platform_long_name>Web-based</platform_long_name>
+    <application_code>aol</application_code>
+    <application_long_name>AOL Mail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">130</average_time_to_process>
+    <business>false</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Web-based</platform_name>
+    <platform_long_name>Web-based</platform_long_name>
+    <application_code>yahoo</application_code>
+    <application_long_name>Yahoo! Mail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">431</average_time_to_process>
+    <business>false</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>true</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Web-based</platform_name>
+    <platform_long_name>Web-based</platform_long_name>
+    <application_code>gmailnew</application_code>
+    <application_long_name>Gmail</application_long_name>
+  </testing_application>
+  <testing_application>
+    <average_time_to_process type="integer">96</average_time_to_process>
+    <business>false</business>
+    <result_type>email</result_type>
+    <supports_content_blocking>false</supports_content_blocking>
+    <desktop_client>false</desktop_client>
+    <status>0</status>
+    <default>false</default>
+    <platform_name>Web-based</platform_name>
+    <platform_long_name>Web-based</platform_long_name>
+    <application_code>mobileme</application_code>
+    <application_long_name>Mobile Me</application_long_name>
+  </testing_application>
+</testing_applications>
