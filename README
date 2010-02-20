@@ -1,0 +1,5 @@
+Litmus PHP library
+
+PHP Implementation of the Litmus (http://litmusapp.com) Customer RESTful 
+API to test email or web pages.
+
