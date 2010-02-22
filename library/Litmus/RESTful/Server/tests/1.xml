@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_set>
+    <created_at type="datetime">2008-12-04T05:57:49Z</created_at>
+    <id type="integer">69472</id>
+    <updated_at type="datetime">2008-12-04T05:57:50Z</updated_at>
+    <name>Google</name>
+    <service>page</service>
+    <state>complete</state>
+    <public_sharing>false</public_sharing>
+    <url_or_guid>http://google.com</url_or_guid>
+    <test_set_versions type="array">
+        <test_set_version>
+            <inline_css type="boolean" nil="true"/>
+            <version type="integer">1</version>
+            <url_or_guid>http://google.com</url_or_guid>
+            <received>true</received>
+            <results type="array">
+                <result>
+                    <check_state nil="true"/>
+                    <error_at type="datetime" nil="true"/>
+                    <finished_at type="datetime">2008-12-04T05:58:11Z</finished_at>
+                    <id type="integer">1149860</id>
+                    <started_at type="datetime">2008-12-04T05:57:57Z</started_at>
+                    <test_code>ie7</test_code>
+                    <state>complete</state>
+                    <result_type>page</result_type>
+                    <testing_application>
+                        <average_time_to_process type="integer">108</average_time_to_process>
+                        <result_type>page</result_type>
+                        <popular>true</popular>
+                        <status>0</status>
+                        <platform_name>Windows</platform_name>
+                        <platform_long_name>Microsoft Windows</platform_long_name>
+                        <application_code>ie7</application_code>
+                        <application_long_name>Explorer 7.0</application_long_name>
+                    </testing_application>
+                    <result_images type="array">
+                        <result_image>
+                            <image_type>full</image_type>
+                            <full_image>s3.amazonaws.com/sitevista/112b97ef-ac60-4752-910b-dfe624b0d83b1149860_IE7-fp.png</full_image>
+                            <thumbnail_image>s3.amazonaws.com/sitevista/112b97ef-ac60-4752-910b-dfe624b0d83b1149860_IE7-fp-thumb.png</thumbnail_image>
+                        </result_image>
+                        <result_image>
+                            <image_type>window</image_type>
+                            <full_image>s3.amazonaws.com/sitevista/112b97ef-ac60-4752-910b-dfe624b0d83b1149860_IE7.png</full_image>
+                            <thumbnail_image>s3.amazonaws.com/sitevista/112b97ef-ac60-4752-910b-dfe624b0d83b1149860_IE7-thumb.png</thumbnail_image>
+                        </result_image>
+                    </result_images>
+                </result>
+            </results>
+        </test_set_version>
+    </test_set_versions>
+</test_set> 

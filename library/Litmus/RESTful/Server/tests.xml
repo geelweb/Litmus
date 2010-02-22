@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_sets type="array">
+  <test_set>
+    <created_at type="datetime">2009-10-05T10:32:30Z</created_at>
+    <id type="integer">76424</id>
+    <name>Google</name>
+    <service>page</service>
+    <state>processing</state>
+    <public_sharing>false</public_sharing>
+    <url_or_guid>http://google.com</url_or_guid>
+  </test_set>
+  <test_set>
+    <created_at type="datetime">2009-10-05T10:32:30Z</created_at>
+    <id type="integer">76424</id>
+    <name>Geelweb</name>
+    <service>page</service>
+    <state>processing</state>
+    <public_sharing>false</public_sharing>
+    <url_or_guid>http://geelweb.org</url_or_guid>
+  </test_set>
+</test_sets> 
