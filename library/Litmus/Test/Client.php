@@ -7,24 +7,30 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
-abstract class Litmus_Test_Client extends ArrayObject
+class Litmus_Test_Client
 {
-    protected $_properties = array();
-
-    public function __construct($elm)
+    public static function load($xml)
     {
-        foreach ($this->_properties as $tag => $v) {
-            $list = $elm->getElementsByTagName($tag);
-            $this->_properties[$tag] = $list->item(0)->nodeValue;
+        $dom = DOMDocument::loadXML($xml);
+        $lst = $dom->getElementsByTagName('testing_application');
+        $col = array();
+        foreach($lst as $item) {
+            $obj = new Litmus_Test_Client();
+            foreach ($item->childNodes as $child) {
+                $property = $child->tagName;
+                $obj->$property = $child;
+            }
+            array_push($col, $obj);
         }
+        return $col;
     }
 
-    public function __get($property)
+    public function __set($property, $value)
     {
-        if (isset($this->_properties[$property])) {
-            return $this->_properties[$property];
+        switch ($property) {
+            default:
+                $this->$property = $value->nodeValue; 
         }
-        return null;
     }
 }
  
