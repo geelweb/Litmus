@@ -8,18 +8,33 @@
  */
 
 class Litmus_RESTful_Server {
-    public function __construct()
-    {
-    }
+    public $result;
+    public $error;
+    public $info;
 
-    public function perform($uri, $request=null)
+    public function perform($method, $uri, $request=null)
     {
         $file = dirname(__FILE__) . '/Server/' . $uri;
-        if ($request===null && file_exists($file)) {
-            return file_get_contents($file);
-        } elseif($request!==null && file_exists($file)) {
-            return file_get_contents($file);
+        if (file_exists($file)) {
+            $this->result = file_get_contents($file);
+            return $this->result;
+        } 
+
+        if ($method == 'GET') {
+            if(preg_match('/tests\/\d\.xml/', $uri)) {
+                $this->result = file_get_contents(dirname(__FILE__) . '/tests/1.xml');
+                return $this->result;
+            }
+        } elseif ($method == 'POST') {
+        } elseif ($method == 'DELETE') {
+            if(preg_match('/tests\/\d+\.xml/', $uri)) {
+                $this->info = array('http_code' => '200');
+                $this->result = 'OK';
+                return $this->result;
+            }
         }
+        
+        
     }
 }
 
