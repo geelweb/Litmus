@@ -8,8 +8,7 @@
  */
 
 require_once 'Litmus/RESTful/Client.php';
-require_once 'Litmus/Test/Page.php';
-require_once 'Litmus/Test/Email.php';
+require_once 'Litmus/Test.php';
 
 /**
  *
@@ -34,7 +33,7 @@ class Litmus
      */
     public static function getPageClients()
     {
-        return Litmus_Test_Page::getClients();
+        return Litmus_Test::getClients(Litmus_Test::TYPE_PAGE);
     }
 
     /**
@@ -44,16 +43,40 @@ class Litmus
      */
     public static function getEmailClients()
     {
-        return Litmus_Test_Email::getClients();
+        return Litmus_Test::getClients(Litmus_Test::TYPE_EMAIL);
     }
 
+    /**
+     * Create a new web page test
+     *
+     * @param array $params
+     * @return Litmus_Test
+     */
     public function createPageTest($params)
     {
-        return Litmus_Test_Page::create($params);
+        return Litmus_Test::create(Litmus_Test::TYPE_PAGE, $params);
     }
 
-    public function createEmailTest()
+    /**
+     * Create a new email test
+     *
+     * @param array $params
+     * @return Litmus_Test
+     */
+    public function createEmailTest($params)
     {
+        return Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params);
+    }
+
+    /**
+     * Return the list of the available tests or a single test if a test id
+     * is provide
+     *
+     * @return mixed
+     */
+    public function getTests($test_id=null)
+    {
+        return Litmus_Test::getTests($test_id);
     }
 }
  
