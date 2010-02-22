@@ -121,11 +121,11 @@ class Litmus_RESTful_Client {
      *
      * @return void
      */
-    private function _performFakeSession($uri, $request=null)
+    private function _performFakeSession($method, $uri, $request=null)
     {
-        $this->_curl_result  = $this->_server->perform($uri, $request);
-        $this->_curl_error = '';
-        $this->_curl_info = array();
+        $this->_curl_result  = $this->_server->perform($method, $uri, $request);
+        $this->_curl_error = $this->_server->error;
+        $this->_curl_info = $this->_server->info;
     }
 
     /**
@@ -166,7 +166,7 @@ class Litmus_RESTful_Client {
     public function get($uri)
     {
         if ($this->_fse) {
-            $this->_performFakeSession($uri);
+            $this->_performFakeSession('GET', $uri);
             return $this->_curl_result;
         }
         $this->_initCurlSession($uri);
@@ -182,7 +182,7 @@ class Litmus_RESTful_Client {
     public function post($uri, $request=null)
     {
         if ($this->_fse) {
-            $this->_performFakeSession($uri, $request);
+            $this->_performFakeSession('POST', $uri, $request);
             return $this->_curl_result;
         }
         $this->_initCurlSession($uri);
@@ -217,10 +217,14 @@ class Litmus_RESTful_Client {
      */
     public function delete($uri)
     {
+        if ($this->_fse) {
+            $this->_performFakeSession('DELETE', $uri);
+            return $this->_curl_info['http_code'] == '200';
+        }
         $this->_initCurlSession($uri);
         curl_setopt($this->_curl_handle, CURLOPT_CUSTOMREQUEST, 'DELETE');
         $this->_performCurlSession();
-        return $this->_curl_result;
+        return $this->_curl_info['http_code'] == '200';
     }
 }
 
