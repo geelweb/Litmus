@@ -25,6 +25,14 @@ class Litmus_Version
      */
     public static function getVersions($test_id, $version_id=null)
     {
+        $rc = Litmus_RESTful_Client::singleton();
+        if ($version_id === null) {
+            $uri = 'tests/' . $test_id . '/versions.xml';
+        } else {
+            $uri = 'tests/' . $test_id . '/versions/' . $version_id . '.xml';
+        }
+        $res = $rc->get($uri);
+        return Litmus_Test_Version::load($res);
     }
 
     /**

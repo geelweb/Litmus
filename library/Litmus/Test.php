@@ -47,6 +47,7 @@ class Litmus_Test
      */
     public function getVersions($version_id=null)
     {
+        return Litmus_Test_Version::getVersions($this->id, $version_id);
     }
 
     /**
