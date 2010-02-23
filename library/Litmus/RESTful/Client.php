@@ -201,6 +201,10 @@ class Litmus_RESTful_Client {
      */
     public function put($uri, $request=null)
     {
+        if ($this->_fse) {
+            $this->_performFakeSession('PUT', $uri, $request);
+            return $this->_curl_result;
+        }
         $this->_initCurlSession($uri);
         curl_setopt($this->_curl_handle, CURLOPT_CUSTOMREQUEST, 'PUT');
         if ($request !== null) {

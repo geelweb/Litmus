@@ -20,7 +20,7 @@ class Litmus_RESTful_Server {
             return $this->result;
         } 
 
-        if ($method == 'GET') {
+        if ($method == 'GET' || $method == 'PUT') {
             if(preg_match('/tests\/\d\.xml/', $uri)) {
                 $this->result = file_get_contents(dirname(__FILE__) . '/tests/1.xml');
                 return $this->result;
