@@ -63,10 +63,32 @@ class Litmus_Test
     /**
      * Implement the test/update method
      *
+     * @params $param properties to update
+     * @todo Update the current object instead of return a new one
      * @return boolean
      */
-    public function update()
+    public function update(array $params)
     {
+        $dom = new DomDocument('1.0');
+        $root = $dom->createElement('test_set');
+        $dom->appendChild($root);
+
+        // public sharing elmt
+        $ps = $dom->createElement(
+            'public_sharing',
+            (isset($params['public_sharing']) && $params['public_sharing']) ? 'true' : 'false');
+        $root->appendChild($ps);
+
+        // name elmt
+        if (isset($params['name'])) {
+            $n = $dom->createElement('name', $params['name']);
+            $root->appendChild($n);
+        }
+
+        $request = $dom->saveXML();
+        $rc = Litmus_RESTful_Client::singleton();
+        return $rc->put('tests/' . $id . '.xml', $request);
+
     }
 
     /**
