@@ -45,14 +45,27 @@ class Litmus_Version
     {
     }
 
+    /**
+     * Implements the versions/create method to create a new version of a test
+     *
+     * @param integer $test_id Id of the test
+     * @return mixed
+     */
     public static function create($test_id)
     {
         $rc = Litmus_RESTful_Client::singleton();
-        $res = $rc->get('tests/' . $test_id . '/versions.xml');
+        $res = $rc->post('tests/' . $test_id . '/versions.xml');
+        return Litmus_Version::load($res);
     }
 
+    /**
+     * Implements the versions/poll method to get the state of a version
+     */
     public function poll()
     {
+        $rc = Litmus_RESTful_Client::singleton();
+        $rest = $rc->get(
+            'tests/' . $test_id . '/versions/' . $version_id . '/poll.xml');
     }
 
     public static function load($xml)
