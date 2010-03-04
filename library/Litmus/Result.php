@@ -24,6 +24,17 @@ class Litmus_Result
      */
     public static function getResults($test_id, $version_id, $result_id=null)
     {
+        $rc = Litmus_RESTful_Client::singleton();
+        if ($result_id === null) {
+            $uri = 'tests/' . $test_id 
+                . '/versions/' . $version_id . '/results.xml';
+        } else {
+            $uri = 'tests/' . $test_id 
+                . '/versions/' . $version_id 
+                . '/results/' . $result_id . '.xml';
+        }
+        $res = $rc->get($uri);
+        return Litmus_Test_Version::load($res);
     }
 
     public static function load($xml)
@@ -64,6 +75,10 @@ class Litmus_Result
             case 'result_images':
                 break;
         }
+    }
+
+    public static function update($test_id, $version_id, $result_id, $params)
+    {
     }
 }
  
