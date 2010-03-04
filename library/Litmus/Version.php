@@ -61,7 +61,7 @@ class Litmus_Version
     /**
      * Implements the versions/poll method to get the state of a version
      */
-    public function poll()
+    public static function poll($test_id, $version_id)
     {
         $rc = Litmus_RESTful_Client::singleton();
         $rest = $rc->get(
