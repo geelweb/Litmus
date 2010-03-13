@@ -74,7 +74,7 @@ class Litmus
      *
      * @return mixed
      */
-    public function getTests($test_id=null)
+    public static function getTests($test_id=null)
     {
         return Litmus_Test::getTests($test_id);
     }
