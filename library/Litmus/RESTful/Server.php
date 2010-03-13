@@ -14,14 +14,14 @@ class Litmus_RESTful_Server {
 
     public function perform($method, $uri, $request=null)
     {
-        $file = dirname(__FILE__) . '/Server/' . $uri;
-        if (file_exists($file)) {
-            $this->result = file_get_contents($file);
-            return $this->result;
-        } 
-
         if ($method == 'GET' || $method == 'PUT') {
-            if(preg_match('/tests\/\d\.xml/', $uri)) {
+            $file = dirname(__FILE__) . '/Server/' . $uri;
+            if (file_exists($file)) {
+                $this->result = file_get_contents($file);
+                return $this->result;
+            } 
+
+            if (preg_match('/tests\/\d\.xml/', $uri)) {
                 $this->result = file_get_contents(dirname(__FILE__) . '/tests/1.xml');
                 return $this->result;
             }
