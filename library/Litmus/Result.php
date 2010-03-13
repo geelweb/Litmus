@@ -33,8 +33,13 @@ class Litmus_Result
                 . '/versions/' . $version_id 
                 . '/results/' . $result_id . '.xml';
         }
+        
         $res = $rc->get($uri);
-        return Litmus_Test_Version::load($res);
+        $results = Litmus_Result::load($res);
+        if ($result_id !== null) {
+            $results = array_pop($results);
+        }
+        return $results;
     }
 
     public static function load($xml)
@@ -42,14 +47,15 @@ class Litmus_Result
         if ($xml instanceof DOMElement) {
             $dom = $xml;
         } else {
-            $dom = DOMDocument::loadXML($xml);
+            $dom = new DOMDocument();
+            $dom->loadXML($xml);
         }
         $lst = $dom->getElementsByTagName('result');
         $col = array();
         foreach($lst as $item) {
             $obj = new Litmus_Result();
             foreach ($item->childNodes as $child) {
-                $property = $child->tagName;
+                $property = $child->nodeName;
                 $obj->$property = $child;
             }
             array_push($col, $obj);
@@ -77,7 +83,7 @@ class Litmus_Result
         }
     }
 
-    public static function update($test_id, $version_id, $result_id, $params)
+    public function update($params)
     {
     }
 }

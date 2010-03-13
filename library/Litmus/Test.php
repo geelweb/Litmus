@@ -36,7 +36,11 @@ class Litmus_Test
             $res = $rc->get('tests/' . $test_id . '.xml');
         }
 
-        return Litmus_Test::load($res);
+        $tests = Litmus_Test::load($res);
+        if ($test_id !== null) {
+            $tests = array_pop($tests);
+        }
+        return $tests;
     }
 
     /**
@@ -47,7 +51,7 @@ class Litmus_Test
      */
     public function getVersions($version_id=null)
     {
-        return Litmus_Test_Version::getVersions($this->id, $version_id);
+        return Litmus_Version::getVersions($this->id, $version_id);
     }
 
     /**
@@ -88,8 +92,9 @@ class Litmus_Test
 
         $request = $dom->saveXML();
         $rc = Litmus_RESTful_Client::singleton();
-        return $rc->put('tests/' . $id . '.xml', $request);
-
+        $res = $rc->put('tests/' . $this->id . '.xml', $request);
+        $test = Litmus_Test::load($res);
+        return array_pop($test);
     }
 
     /**
@@ -169,18 +174,19 @@ class Litmus_Test
      */
     public static function load($xml)
     {
-        $dom = DOMDocument::loadXML($xml);
+        $dom = new DOMDocument();
+        $dom->loadXML($xml);
         $lst = $dom->getElementsByTagName('test_set');
         $col = array();
         foreach ($lst as $item) {
             $obj = new Litmus_Test();
             foreach ($item->childNodes as $child) {
-                $property = $child->tagName;
+                $property = $child->nodeName;
                 $obj->$property = $child;
             }
             array_push($col, $obj);
         }
-        return count($col)==1 ? $obj : $col;
+        return $col;
     }
 
     /**
@@ -200,10 +206,11 @@ class Litmus_Test
             case 'service':
             case 'state':
             case 'public_sharing':
+            case 'url_or_guid':
                 $this->$property = $value->nodeValue;
                 break;
             case 'test_set_versions':
-                $this->$property = Litmus_Version::load($value);
+                $this->$property = Litmus_Version::load($value, $this->id);
                 break;
         }
     }

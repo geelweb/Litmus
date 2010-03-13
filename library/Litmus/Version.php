@@ -14,6 +14,8 @@ require_once 'Litmus/Result.php';
  */
 class Litmus_Version 
 {
+    private $_test_id = null;
+
     /**
      * Implements the versions and versions/show methods to get all or one 
      * version of a test. Return an array of Litmus_Version objects or a
@@ -32,7 +34,11 @@ class Litmus_Version
             $uri = 'tests/' . $test_id . '/versions/' . $version_id . '.xml';
         }
         $res = $rc->get($uri);
-        return Litmus_Test_Version::load($res);
+        $versions = Litmus_Version::load($res, $test_id);
+        if ($version_id !== null) {
+            $versions = array_pop($versions);
+        }
+        return $versions;
     }
 
     /**
@@ -41,8 +47,9 @@ class Litmus_Version
      * @param integer $result_id Id of the result to retrieve
      * @return mixed
      */
-    public function getResults($result_id)
+    public function getResults($result_id=null)
     {
+        return Litmus_Result::getResults($this->getTestId(), $this->version, $result_id);
     }
 
     /**
@@ -55,7 +62,7 @@ class Litmus_Version
     {
         $rc = Litmus_RESTful_Client::singleton();
         $res = $rc->post('tests/' . $test_id . '/versions.xml');
-        return Litmus_Version::load($res);
+        return Litmus_Version::load($res, $test_id);
     }
 
     /**
@@ -68,19 +75,21 @@ class Litmus_Version
             'tests/' . $test_id . '/versions/' . $version_id . '/poll.xml');
     }
 
-    public static function load($xml)
+    public static function load($xml, $test_id)
     {
         if ($xml instanceof DOMElement) {
             $dom = $xml;
         } else {
-            $dom = DOMDocument::loadXML($xml);
+            $dom = new DOMDocument();
+            $dom->loadXML($xml);
         }
         $lst = $dom->getElementsByTagName('test_set_version');
         $col = array();
         foreach($lst as $item) {
             $obj = new Litmus_Version();
+            $obj->setTestId($test_id);
             foreach ($item->childNodes as $child) {
-                $property = $child->tagName;
+                $property = $child->nodeName;
                 $obj->$property = $child;
             }
             array_push($col, $obj);
@@ -100,6 +109,16 @@ class Litmus_Version
                 $this->$property = Litmus_Result::load($value);
                 break;
         }
+    }
+
+    public function setTestId($id)
+    {
+        $this->_test_id = $id;
+    }
+
+    public function getTestId()
+    {
+        return $this->_test_id;
     }
 }
  
