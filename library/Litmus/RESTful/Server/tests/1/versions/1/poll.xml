@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_set_version>
+  <version type="integer">1</version>
+  <results type="array">
+    <result>
+      <id type="integer">1</id>
+      <test_code>ie7</test_code>
+      <state>pending</state>
+    </result>
+  </results>
+</test_set_version> 
+
