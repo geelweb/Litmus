@@ -55,6 +55,18 @@ class Litmus_Test
     }
 
     /**
+     * Create a new version of the test
+     *
+     * @return Litmus_Version
+     */
+    public function createVersion()
+    {
+        $version = Litmus_Version::create($this->id);
+        array_push($this->test_set_versions, $version);
+        return $version;
+    }
+
+    /**
      * Implement the test/destroy method
      *
      * @return boolean
