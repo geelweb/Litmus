@@ -12,6 +12,9 @@
  */
 class Litmus_Result
 {
+    private $_version_id;
+    private $_test_id;
+
     /**
      * Implements the results and results/show methods to get all or one 
      * result of a version of a test. Return an array of Litmus_Result objects 
@@ -35,14 +38,14 @@ class Litmus_Result
         }
         
         $res = $rc->get($uri);
-        $results = Litmus_Result::load($res);
+        $results = Litmus_Result::load($res, $version_id, $test_id);
         if ($result_id !== null) {
             $results = array_pop($results);
         }
         return $results;
     }
 
-    public static function load($xml)
+    public static function load($xml, $version_id=null, $test_id=null)
     {
         if ($xml instanceof DOMElement) {
             $dom = $xml;
@@ -57,6 +60,8 @@ class Litmus_Result
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;
                 $obj->$property = $child;
+                $obj->setVersionId($version_id);
+                $obj->setTestId($test_id);
             }
             array_push($col, $obj);
         }
@@ -85,6 +90,55 @@ class Litmus_Result
 
     public function update($params)
     {
+        $dom = new DOMDocument('1.0');
+        $root = $dom->createElement('result');
+        $dom->appendChild($root);
+
+        // check state elm
+        $ps = $dom->createElement(
+            'check_state',
+            isset($params['check_state']) ? $params['check_state'] : '');
+        $root->appendChild($ps);
+
+        $request = $dom->saveXML();
+        $rc = Litmus_RESTful_Client::singleton();
+        $res = $rc->put('tests/' . $this->getTestId()
+            . '/versions/' . $this->getVersionId() 
+            . '/results/' . $this->id . '.xml', $request);
+        $test = Litmus_Result::load($res);
+        return array_pop($test);
+    }
+
+    /**
+     * Implement the results/retest method
+     *
+     */
+    public function retest()
+    {
+        $rc = Litmus_RESTful_Client::singleton();
+        return $rc->post('tests/' . $this->getTestId()
+            . '/versions/' . $this->getVersionId() 
+            . '/results/' . $this->id . '/retest.xml');
+    }
+
+    public function setVersionId($id)
+    {
+        $this->_version_id = $id;
+    }
+
+    public function getVersionId()
+    {
+        return $this->_version_id;
+    }
+
+    public function setTestId($id)
+    {
+        $this->_test_id = $id;
+    }
+
+    public function getTestId()
+    {
+        return $this->_test_id;
     }
 }
  
