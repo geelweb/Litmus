@@ -19,6 +19,10 @@ require_once dirname(__FILE__) . '/../TestHelper.php';
  */
 class Litmus_TestSetVersionTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Test the versions RESTFul method
+     *
+     */
     public function testVersionsMethod()
     {
         $test = Litmus::getTests(1); 
@@ -27,6 +31,10 @@ class Litmus_TestSetVersionTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($versions[0] instanceof Litmus_Version);
     }
 
+    /**
+     * Test the versions/show RESTFul method
+     *
+     */
     public function testVersionsShowMethod()
     {
         $test = Litmus::getTests(1); 
@@ -44,12 +52,38 @@ class Litmus_TestSetVersionTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($results[0] instanceof Litmus_Result);
     }
 
+    /**
+     * Test the versions/create RESTFul Method
+     *
+     */
     public function testVersionsCreateMethod()
     {
+        $test = Litmus::getTests(1); 
+        $nb_versions = count($test->test_set_versions);
+        $version = $test->createVersion();
+        $this->assertEquals(count($test->test_set_versions), $nb_versions+1);
+        $this->assertTrue($version instanceof Litmus_Version);
     }
 
+    /**
+     * Test the versions/poll RESTFul method
+     *
+     */
     public function testVersionsPollMethod()
     {
+        $test = Litmus::getTests(1); 
+        $version = $test->getVersions(1);
+        $version = $version->poll();
+
+        $this->assertEquals($version->version, 1);
+        $this->assertTrue(is_array($version->results));
+        $this->assertTrue(1 == count($version->results));
+        $this->assertTrue($version->results[0] instanceof Litmus_Result);
+        $result = $version->results[0];
+
+        $this->assertEquals($result->id, 1);
+        $this->assertEquals($result->test_code, 'ie7');
+        $this->assertEquals($result->state, 'pending');
     }
 }
  
