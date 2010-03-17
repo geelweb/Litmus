@@ -183,7 +183,11 @@ class Litmus_RESTful_Client {
     {
         if ($this->_fse) {
             $this->_performFakeSession('POST', $uri, $request);
-            return $this->_curl_result;
+            if (!empty($this->_curl_info)) {
+                return $this->_curl_info['http_code'] == '201';
+            } else {
+                return $this->_curl_result;
+            }
         }
         $this->_initCurlSession($uri);
         curl_setopt($this->_curl_handle, CURLOPT_POST, true);
