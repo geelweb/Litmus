@@ -62,17 +62,20 @@ class Litmus_Version
     {
         $rc = Litmus_RESTful_Client::singleton();
         $res = $rc->post('tests/' . $test_id . '/versions.xml');
-        return Litmus_Version::load($res, $test_id);
+        $versions = Litmus_Version::load($res, $test_id);
+        return array_pop($versions);
     }
 
     /**
      * Implements the versions/poll method to get the state of a version
      */
-    public static function poll($test_id, $version_id)
+    public function poll()
     {
         $rc = Litmus_RESTful_Client::singleton();
-        $rest = $rc->get(
-            'tests/' . $test_id . '/versions/' . $version_id . '/poll.xml');
+        $res = $rc->get(
+            'tests/' . $this->getTestId() . '/versions/' . $this->version . '/poll.xml');
+        $versions = Litmus_Version::load($res, $this->getTestId());
+        return array_pop($versions);
     }
 
     public static function load($xml, $test_id)
