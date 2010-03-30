@@ -17,7 +17,7 @@ class Litmus_Test_Client
         foreach($lst as $item) {
             $obj = new Litmus_Test_Client();
             foreach ($item->childNodes as $child) {
-                $property = $child->tagName;
+                $property = $child->nodeName;
                 $obj->$property = $child;
             }
             array_push($col, $obj);
@@ -29,8 +29,8 @@ class Litmus_Test_Client
     {
         switch ($property) {
             default:
-                $this->$property = $value->nodeValue; 
+                $this->$property = $value->nodeValue;
         }
     }
 }
- 
+
