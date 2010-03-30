@@ -2,15 +2,20 @@
 /**
  * Litmus RESTful client
  *
+ * @package Litmus_RESTful
  * @author Guillaume <guillaume@geelweb.org>
  * @copyright Copyright (c) 2010, Guillaume Luchet
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
+/**
+ *
+ */
 require_once 'Litmus/RESTful/Server.php';
 
 /**
  *
+ * @package Litmus_RESTful
  */
 class Litmus_RESTful_Client {
     private static $_instance = null;
