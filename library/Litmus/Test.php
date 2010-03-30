@@ -19,14 +19,14 @@ require_once 'Litmus/Test/Client.php';
  *
  * @package Litmus
  */
-class Litmus_Test 
+class Litmus_Test
 {
     const TYPE_PAGE = 'pages';
     const TYPE_EMAIL = 'emails';
 
     /**
      * Implements the tests and tests/show methods to get
-     * all or one test. Return an array of Litmus_Test object or a single 
+     * all or one test. Return an array of Litmus_Test object or a single
      * Litmus_Test object if a test_id is provide
      *
      * @param integer $test_id Id of the test to retrieve
@@ -115,7 +115,7 @@ class Litmus_Test
     }
 
     /**
-     * Implemet the pages/create ane emails/create methods to ceate a new web 
+     * Implemet the pages/create ane emails/create methods to ceate a new web
      * page test or a new email test.
      *
      * @param string $test_type Type of the test (TYPE_PAGE||TYPE_EMAIL)
@@ -124,7 +124,7 @@ class Litmus_Test
      */
     public static function create($test_type, $params)
     {
-        $dom = new DomDocument('1.0', 'UTF-8');
+        $dom = new DomDocument('1.0', null);
         $root = $dom->createElement('test_set');
         $dom->appendChild($root);
 
@@ -145,8 +145,10 @@ class Litmus_Test
         }
 
         // url node
-        $node = $dom->createElement('url', $params['url']);
-        $root->appendChild($node);
+        if (isset($params['url'])) {
+            $node = $dom->createElement('url', $params['url']);
+            $root->appendChild($node);
+        }
 
         // save defaults node
         $node = $dom->createElement(
@@ -160,17 +162,33 @@ class Litmus_Test
             (isset($params['use_defaults']) && $params['use_defaults']) ? 'true' : 'false');
         $root->appendChild($node);
 
+        if (isset($params['email_source'])) {
+            $email_node = $dom->createElement('email_source');
+            $root->appendChild($email_node);
+
+            $node = $dom->createElement('body');
+            $data = $dom->createCDATASection($params['email_source']['body']);
+            $node->appendChild($data);
+            $email_node->appendChild($node);
+
+            $node = $dom->createElement('subject', $params['email_source']['subject']);
+            $email_node->appendChild($node);
+        }
+
         $request = $dom->saveXML();
+        echo '<hr/><pre>';
+        print_r($request);
+        echo '</pre><hr/>';
 
         $rc = Litmus_RESTful_Client::singleton();
         $res = $rc->post($test_type . '.xml', $request);
-        
+
         $test = Litmus_Test::load($res);
         return $test;
     }
 
     /**
-     * Implement the pages/clients and emails/clients methods to get the 
+     * Implement the pages/clients and emails/clients methods to get the
      * available clients for web pages and email tests
      *
      * @param string the type of clients to retrieve (TYPE_PAGE|TYPE_EMAIL)
