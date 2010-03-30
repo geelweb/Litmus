@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test_set>
+  <created_at type="datetime">2009-10-05T10:49:52Z</created_at>
+  <id type="integer">76425</id>
+  <updated_at type="datetime">2009-10-05T10:49:53Z</updated_at>
+  <name>No subject</name>
+  <service>email</service>
+  <state>waiting</state>
+  <public_sharing>false</public_sharing>
+  <test_set_versions type="array">
+    <test_set_version>
+      <version type="integer">1</version>
+      <url_or_guid>40b1b5f@emailtests.com</url_or_guid>
+      <received>false</received>
+      <source_url>s3.amazonaws.com/sitevista/missing_source</source_url>
+      <inline_css></inline_css>
+      <results type="array">
+        <result>
+          <check_state nil="true"></check_state>
+          <error_at type="datetime" nil="true"></error_at>
+          <finished_at type="datetime" nil="true"></finished_at>
+          <id type="integer">1284887</id>
+          <started_at type="datetime" nil="true"></started_at>
+          <test_code>hotmail</test_code>
+          <state>pending</state>
+          <result_type>email</result_type>
+          <rendered_html_url></rendered_html_url>
+          <testing_application>
+            <average_time_to_process type="integer">213</average_time_to_process>
+            <business>false</business>
+            <result_type>email</result_type>
+            <supports_content_blocking>false</supports_content_blocking>
+            <desktop_client>false</desktop_client>
+            <status>0</status>
+            <platform_name>Web-based</platform_name>
+            <platform_long_name>Web-based</platform_long_name>
+            <application_code>hotmail</application_code>
+            <application_long_name>Live Hotmail</application_long_name>
+          </testing_application>
+          <result_images type="array">
+            <result_image>
+              <image_type>window_on</image_type>
+            </result_image>
+            <result_image>
+              <image_type>full_on</image_type>
+            </result_image>
+            <result_image>
+              <image_type>window_off</image_type>
+            </result_image>
+            <result_image>
+              <image_type>full_off</image_type>
+            </result_image>
+          </result_images>
+        </result>
+      </results>
+    </test_set_version>
+  </test_set_versions>
+</test_set>
+
