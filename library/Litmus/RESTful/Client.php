@@ -38,7 +38,7 @@ class Litmus_RESTful_Client {
      *
      * @return void
      */
-    private function __construct() 
+    private function __construct()
     {
     }
 
@@ -55,7 +55,7 @@ class Litmus_RESTful_Client {
 
         return self::$_instance;
     }
-    
+
     /**
      * Set the Litmus API credentials
      *
@@ -75,7 +75,7 @@ class Litmus_RESTful_Client {
 
     /**
      * Build the REST url
-     * 
+     *
      * @return string
      */
     private function _getApiUrl($uri)
@@ -107,21 +107,21 @@ class Litmus_RESTful_Client {
         $this->_curl_result  = curl_exec($this->_curl_handle);
         $this->_curl_error = curl_error($this->_curl_handle);
         $this->_curl_info = curl_getinfo($this->_curl_handle);
-        print_r($this->_curl_result);
 
         curl_close($this->_curl_handle);
 
-        if ($this->_curl_info['http_code'] != '200') {
+        if (preg_match('/^[3|4|5][0-9]{2}$/', $this->_curl_info['http_code'])) {
             throw new Exception(sprintf(
-                'An error occurs calling %s : %s (http_code %s)',
+                'An error occurs calling %s : %s (http_code %s) : %s',
                 $this->_curl_info['url'],
                 $this->_curl_error,
-                $this->_curl_info['http_code']));
+                $this->_curl_info['http_code'],
+                (string) $this->_curl_result));
         }
     }
 
     /**
-     * Perform a fake session calling the Litmus_RESTful_Server to get a fake 
+     * Perform a fake session calling the Litmus_RESTful_Server to get a fake
      * result.
      *
      * @return void
@@ -196,6 +196,11 @@ class Litmus_RESTful_Client {
         }
         $this->_initCurlSession($uri);
         curl_setopt($this->_curl_handle, CURLOPT_POST, true);
+        $headers = array(
+            'Content-Type: application/xml',
+        );
+        curl_setopt($this->_curl_handle, CURLOPT_HTTPHEADER, $headers);
+        //curl_setopt($this->_curl_handle, CURLOPT_VERBOSE, true);
         if ($request !== null) {
             curl_setopt($this->_curl_handle, CURLOPT_POSTFIELDS, $request);
         }
