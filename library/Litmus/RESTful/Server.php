@@ -29,17 +29,21 @@ class Litmus_RESTful_Server {
 //        echo 'METHOD : ', $method, "\n";
 //        echo 'URI : ', $uri, "\n";
         if ($method == 'GET' || $method == 'PUT') {
+            if (preg_match('/tests\/\d+.xml/', $uri)) {
+                $this->result = file_get_contents(dirname(__FILE__) . '/Server/tests/1.xml');
+                return $this->result;
+            }
             $file = dirname(__FILE__) . '/Server/' . $uri;
             if (file_exists($file)) {
                 $this->result = file_get_contents($file);
                 return $this->result;
             }
         } elseif ($method == 'POST') {
-            if (preg_match('/tests\/\d\/versions.xml/', $uri)) {
+            if (preg_match('/tests\/\d+\/versions.xml/', $uri)) {
                 $this->result = file_get_contents(dirname(__FILE__) . '/Server/tests/1/versions/1.xml');
                 return $this->result;
             }
-            if (preg_match('/tests\/\d\/versions\/\d\/results\/\d\/retest.xml/', $uri)) {
+            if (preg_match('/tests\/\d+\/versions\/\d+\/results\/\d+\/retest.xml/', $uri)) {
                 $this->info = array('http_code' => '201');
                 $this->result = 'Created';
                 return $this->result;
