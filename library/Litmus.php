@@ -14,7 +14,7 @@ require_once 'Litmus/RESTful/Client.php';
 require_once 'Litmus/Test.php';
 
 /**
- * 
+ *
  * @package Litmus
  */
 class Litmus
@@ -69,7 +69,7 @@ class Litmus
      */
     public function createEmailTest($params)
     {
-        return Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params);
+        return array_pop(Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params));
     }
 
     /**
@@ -83,4 +83,4 @@ class Litmus
         return Litmus_Test::getTests($test_id);
     }
 }
- 
+
