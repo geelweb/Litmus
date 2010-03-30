@@ -9,6 +9,12 @@
 
 /**
  *
+ */
+require_once('Litmus/Result/Testing/Application.php');
+require_once('Litmus/Result/Image.php');
+
+/**
+ *
  * @package Litmus
  */
 class Litmus_Result
@@ -17,8 +23,8 @@ class Litmus_Result
     private $_test_id;
 
     /**
-     * Implements the results and results/show methods to get all or one 
-     * result of a version of a test. Return an array of Litmus_Result objects 
+     * Implements the results and results/show methods to get all or one
+     * result of a version of a test. Return an array of Litmus_Result objects
      * or a single Litmus_Result object if a version_id is provide.
      *
      * @param integer $test_id Id of the test
@@ -30,14 +36,14 @@ class Litmus_Result
     {
         $rc = Litmus_RESTful_Client::singleton();
         if ($result_id === null) {
-            $uri = 'tests/' . $test_id 
+            $uri = 'tests/' . $test_id
                 . '/versions/' . $version_id . '/results.xml';
         } else {
-            $uri = 'tests/' . $test_id 
-                . '/versions/' . $version_id 
+            $uri = 'tests/' . $test_id
+                . '/versions/' . $version_id
                 . '/results/' . $result_id . '.xml';
         }
-        
+
         $res = $rc->get($uri);
         $results = Litmus_Result::load($res, $version_id, $test_id);
         if ($result_id !== null) {
@@ -83,8 +89,10 @@ class Litmus_Result
                 $this->$property = $value->nodeValue;
                 break;
             case 'testing_application':
+                $this->$property = Litmus_Result_Testing_Application::load($value);
                 break;
             case 'result_images':
+                $this->$property = Litmus_Result_Image::load($value);
                 break;
         }
     }
@@ -104,7 +112,7 @@ class Litmus_Result
         $request = $dom->saveXML();
         $rc = Litmus_RESTful_Client::singleton();
         $res = $rc->put('tests/' . $this->getTestId()
-            . '/versions/' . $this->getVersionId() 
+            . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '.xml', $request);
         $test = Litmus_Result::load($res);
         return array_pop($test);
@@ -118,7 +126,7 @@ class Litmus_Result
     {
         $rc = Litmus_RESTful_Client::singleton();
         return $rc->post('tests/' . $this->getTestId()
-            . '/versions/' . $this->getVersionId() 
+            . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '/retest.xml');
     }
 
@@ -142,4 +150,4 @@ class Litmus_Result
         return $this->_test_id;
     }
 }
- 
+
