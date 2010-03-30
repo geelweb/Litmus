@@ -1,17 +1,21 @@
 <?php
 /**
  *
- *
+ * @package Litmus
  * @author Guillaume <guillaume@geelweb.org>
  * @copyright Copyright (c) 2010, Guillaume Luchet
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
+/**
+ *
+ */
 require_once 'Litmus/RESTful/Client.php';
 require_once 'Litmus/Test.php';
 
 /**
- *
+ * 
+ * @package Litmus
  */
 class Litmus
 {
