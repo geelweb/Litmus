@@ -2,6 +2,7 @@
 /**
  *
  *
+ * @package Litmus_UnitTest
  * @author Guillaume <guillaume@geelweb.org>
  * @copyright Copyright (c) 2010, Guillaume Luchet
  * @license http://opensource.org/licenses/bsd-license.php BSD License
@@ -16,7 +17,7 @@ require_once dirname(__FILE__) . '/../TestHelper.php';
 /**
  * Unit test class for Litmus Test Set Methods 
  * 
- * @package Litmus_Test
+ * @package Litmus_UnitTest
  */
 class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
 {
