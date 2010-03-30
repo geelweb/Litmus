@@ -33,7 +33,7 @@ class Litmus_RESTful_Server {
             if (file_exists($file)) {
                 $this->result = file_get_contents($file);
                 return $this->result;
-            } 
+            }
         } elseif ($method == 'POST') {
             if (preg_match('/tests\/\d\/versions.xml/', $uri)) {
                 $this->result = file_get_contents(dirname(__FILE__) . '/Server/tests/1/versions/1.xml');
@@ -44,6 +44,11 @@ class Litmus_RESTful_Server {
                 $this->result = 'Created';
                 return $this->result;
             }
+            $file = dirname(__FILE__) . '/Server/' . $uri;
+            if (file_exists($file)) {
+                $this->result = file_get_contents($file);
+                return $this->result;
+            }
         } elseif ($method == 'DELETE') {
             if(preg_match('/tests\/\d+\.xml/', $uri)) {
                 $this->info = array('http_code' => '200');
@@ -51,8 +56,8 @@ class Litmus_RESTful_Server {
                 return $this->result;
             }
         }
-        
-        
+
+
     }
 }
 
