@@ -86,6 +86,8 @@ class Litmus_Result
             case 'test_code':
             case 'state':
             case 'result_type':
+            case 'found_in_spam':
+            case 'spam_score':
                 $this->$property = $value->nodeValue;
                 break;
             case 'testing_application':
