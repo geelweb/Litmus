@@ -176,9 +176,6 @@ class Litmus_Test
         }
 
         $request = $dom->saveXML();
-        echo '<hr/><pre>';
-        print_r($request);
-        echo '</pre><hr/>';
 
         $rc = Litmus_RESTful_Client::singleton();
         $res = $rc->post($test_type . '.xml', $request);
