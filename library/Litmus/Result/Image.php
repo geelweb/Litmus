@@ -13,7 +13,7 @@
  */
 class Litmus_Result_Image
 {
-    public function load($xml)
+    public static function load($xml)
     {
         if ($xml instanceof DOMElement) {
             $dom = $xml;

@@ -13,7 +13,7 @@
  */
 class Litmus_Result_Testing_Application
 {
-    public function load($xml)
+    public static function load($xml)
     {
         if ($xml instanceof DOMElement) {
             $dom = $xml;
