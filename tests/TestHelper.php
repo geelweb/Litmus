@@ -12,7 +12,7 @@ ob_start();
 error_reporting(E_ALL | E_STRICT);
 
 ini_set('display_errors', 'on');
-ini_set('memmory_limit', 1);
+ini_set('memory_limit', -1);
 
 define('BASE_PATH', realpath(dirname(__FILE__)) . '/..');
 
@@ -23,7 +23,7 @@ set_include_path(
 
 require_once 'Litmus.php';
 Litmus::setAPICredentials(
-    'geelweb', 'gluchet', 'xxxxxx', 
+    'geelweb', 'gluchet', 'xxxxxx',
     array(
         'enable_fake_server' => true,
     ));
