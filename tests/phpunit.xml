@@ -6,7 +6,7 @@
     stopOnFailure="true"
     syntaxCheck="true"
     bootstrap="./TestHelper.php">
-    <testsuite name="M3Framework Test Suite">
+    <testsuite name="Litmus Test Suite">
         <directory>./</directory>
     </testsuite>
 </phpunit>
