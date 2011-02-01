@@ -12,6 +12,7 @@
  */
 require_once('Litmus/Result/Testing/Application.php');
 require_once('Litmus/Result/Image.php');
+require_once('Litmus/Result/ResultHeader.php');
 
 /**
  *
@@ -95,6 +96,9 @@ class Litmus_Result
                 break;
             case 'result_images':
                 $this->$property = Litmus_Result_Image::load($value);
+                break;
+            case 'result_headers':
+                $this->$property = Litmus_Result_ResultHeader::load($value);
                 break;
         }
     }
