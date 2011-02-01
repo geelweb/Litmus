@@ -76,6 +76,52 @@
             </result_image>
           </result_images>
         </result>
+        <result>
+          <check_state nil="true"></check_state>
+          <error_at type="datetime" nil="true"></error_at>
+          <finished_at type="datetime">2011-02-01T16:25:49Z</finished_at>
+          <id type="integer">38712826</id>
+
+          <started_at type="datetime">2011-02-01T16:18:18Z</started_at>
+          <test_code>spamassassin</test_code>
+          <state>complete</state>
+          <result_type>spam</result_type>
+          <testing_application>
+            <average_time_to_process type="integer">368</average_time_to_process>
+
+            <business>false</business>
+            <result_type>spam</result_type>
+            <supports_content_blocking>false</supports_content_blocking>
+            <spam_address>chkemltests@sa3.virtual.vps-host.net</spam_address>
+            <spam_address>chkemltests@sa3.virtual.vps-host.net</spam_address>
+            <status>0</status>
+
+            <platform_name>Hosted</platform_name>
+            <platform_long_name>Hosted or server-based</platform_long_name>
+            <application_code>spamassassin</application_code>
+            <application_long_name>SpamAssassin</application_long_name>
+          </testing_application>
+
+          <found_in_spam>false</found_in_spam>
+          <spam_score>2.3</spam_score>
+          <result_headers type="array">
+            <result_header>
+              <spam_header>
+                <description>You've mentioned Viagra or a similar erectile disfunction drug. To fix this, remove any mention of these words.</description>
+                <rating>4</rating>
+                <key>DRUGS_ERECTILE</key>
+              </spam_header>
+            </result_header>
+            <result_header>
+              <spam_header>
+                <description>Your message contains information on growing body parts. Try to avoid any references to body enhancement.</description>
+                <rating>4</rating>
+                <key>BODY_ENHANCEMENT</key>
+              </spam_header>
+            </result_header>
+          </result_headers>
+        </result>
+
       </results>
     </test_set_version>
 </test_set_versions>
