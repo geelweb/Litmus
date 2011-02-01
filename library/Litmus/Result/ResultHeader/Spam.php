@@ -21,7 +21,7 @@ class Litmus_Result_ResultHeader_Spam
             $dom = new DOMDocument();
             $dom->loadXML($xml);
         }
-        $obj = new Litmus_Result_Testing_Application();
+        $obj = new Litmus_Result_ResultHeader_Spam();
         foreach ($dom->childNodes as $child) {
             $property = $child->nodeName;
             $obj->$property = $child;
