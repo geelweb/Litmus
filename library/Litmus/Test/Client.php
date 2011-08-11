@@ -11,7 +11,8 @@ class Litmus_Test_Client
 {
     public static function load($xml)
     {
-        $dom = DOMDocument::loadXML($xml);
+        $dom = new DOMDocument;
+        $dom->loadXML($xml);
         $lst = $dom->getElementsByTagName('testing_application');
         $col = array();
         foreach($lst as $item) {
