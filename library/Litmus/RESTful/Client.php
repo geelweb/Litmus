@@ -80,7 +80,7 @@ class Litmus_RESTful_Client {
      */
     private function _getApiUrl($uri)
     {
-        return 'http://' . $this->_api_key . '.litmus.com/' . $uri;
+        return 'https://' . $this->_api_key . '.litmus.com/' . $uri;
     }
 
     /**
