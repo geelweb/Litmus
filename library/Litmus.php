@@ -56,7 +56,7 @@ class Litmus
      * @param array $params
      * @return Litmus_Test
      */
-    public function createPageTest($params)
+    public static function createPageTest($params)
     {
         return Litmus_Test::create(Litmus_Test::TYPE_PAGE, $params);
     }
@@ -67,7 +67,7 @@ class Litmus
      * @param array $params
      * @return Litmus_Test
      */
-    public function createEmailTest($params)
+    public static function createEmailTest($params)
     {
         return array_pop(Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params));
     }
