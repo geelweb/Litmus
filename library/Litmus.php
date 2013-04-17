@@ -69,7 +69,8 @@ class Litmus
      */
     public static function createEmailTest($params)
     {
-        return array_pop(Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params));
+        $tests = Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params);
+        return array_pop($tests);
     }
 
     /**
