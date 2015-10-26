@@ -201,9 +201,12 @@ class Litmus_RESTful_Client {
         );
         curl_setopt($this->_curl_handle, CURLOPT_HTTPHEADER, $headers);
         //curl_setopt($this->_curl_handle, CURLOPT_VERBOSE, true);
-        if ($request !== null) {
-            curl_setopt($this->_curl_handle, CURLOPT_POSTFIELDS, $request);
+
+        if ($request === null) {
+            $request = [];
         }
+        curl_setopt($this->_curl_handle, CURLOPT_POSTFIELDS, $request);
+
         $this->_performCurlSession();
         return $this->_curl_result;
     }
