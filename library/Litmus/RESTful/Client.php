@@ -203,7 +203,7 @@ class Litmus_RESTful_Client {
         //curl_setopt($this->_curl_handle, CURLOPT_VERBOSE, true);
 
         if ($request === null) {
-            $request = [];
+            $request = array();
         }
         curl_setopt($this->_curl_handle, CURLOPT_POSTFIELDS, $request);
 
