@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD License
  */
 
-require_once('Litmus/Result/ResultHeader/Spam.php');
+require_once __DIR__ . '/ResultHeader/Spam.php';
 
 /**
  *

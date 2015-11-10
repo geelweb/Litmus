@@ -21,7 +21,7 @@ set_include_path(
     . BASE_PATH . '/tests' . PATH_SEPARATOR
     . get_include_path());
 
-require_once 'Litmus.php';
+require_once __DIR__ . '/../library/Litmus.php';
 Litmus::setAPICredentials(
     'geelweb', 'gluchet', 'xxxxxx',
     array(

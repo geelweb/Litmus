@@ -11,9 +11,8 @@
 /**
  *
  */
-require_once 'Litmus/Test.php';
-require_once 'Litmus/Version.php';
-require_once 'Litmus/Test/Client.php';
+require_once __DIR__ . '/Version.php';
+require_once __DIR__ . '/Test/Client.php';
 
 /**
  *

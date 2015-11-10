@@ -10,7 +10,7 @@
 /**
  *
  */
-require_once 'Litmus/Result.php';
+require_once __DIR__ . '/Result.php';
 
 /**
  *

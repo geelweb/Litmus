@@ -11,7 +11,7 @@
 /**
  *
  */
-require_once 'Litmus/RESTful/Server.php';
+require_once __DIR__ . '/Server.php';
 
 /**
  *

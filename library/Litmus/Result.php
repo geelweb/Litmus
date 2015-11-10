@@ -10,9 +10,9 @@
 /**
  *
  */
-require_once('Litmus/Result/Testing/Application.php');
-require_once('Litmus/Result/Image.php');
-require_once('Litmus/Result/ResultHeader.php');
+require_once __DIR__ . '/Result/Testing/Application.php';
+require_once __DIR__ . '/Result/Image.php';
+require_once __DIR__ . '/Result/ResultHeader.php';
 
 /**
  *
