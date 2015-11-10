@@ -10,8 +10,8 @@
 /**
  *
  */
-require_once 'Litmus/RESTful/Client.php';
-require_once 'Litmus/Test.php';
+require_once __DIR__ . '/Litmus/RESTful/Client.php';
+require_once __DIR__ . '/Litmus/Test.php';
 
 /**
  *

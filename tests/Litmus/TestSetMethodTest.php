@@ -12,7 +12,7 @@
 /**
  * Include test helper
  */
-require_once dirname(__FILE__) . '/../TestHelper.php';
+require_once __DIR__ . '/../TestHelper.php';
 
 /**
  * Unit test class for Litmus Test Set Methods 
