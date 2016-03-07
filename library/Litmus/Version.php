@@ -16,12 +16,12 @@ require_once __DIR__ . '/Result.php';
  *
  * @package Litmus
  */
-class Litmus_Version 
+class Litmus_Version
 {
     private $_test_id = null;
 
     /**
-     * Implements the versions and versions/show methods to get all or one 
+     * Implements the versions and versions/show methods to get all or one
      * version of a test. Return an array of Litmus_Version objects or a
      * single Litmus_version object if a version_id is provide.
      *
@@ -112,6 +112,14 @@ class Litmus_Version
             case 'received':
                 $this->$property = $value->nodeValue;
                 break;
+            case 'spam_seed_addresses':
+                $spamSeedAddresses = array();
+                $list = $value->getElementsByTagName('spam_seed_address');
+                for ($i=0; $i<$list->length; $i++) {
+                    $spamSeedAddresses[] = $list->item($i)->nodeValue;
+                }
+                $this->$property = $spamSeedAddresses;
+                break;
             case 'results':
                 $this->$property = Litmus_Result::load($value);
                 break;
@@ -128,4 +136,4 @@ class Litmus_Version
         return $this->_test_id;
     }
 }
- 
+
