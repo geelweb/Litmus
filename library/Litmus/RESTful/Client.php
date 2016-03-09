@@ -95,6 +95,7 @@ class Litmus_RESTful_Client {
         curl_setopt($this->_curl_handle, CURLOPT_USERPWD,
             sprintf('%s:%s', $this->_api_username, $this->_api_password));
         curl_setopt($this->_curl_handle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->_curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
     }
 
     /**
