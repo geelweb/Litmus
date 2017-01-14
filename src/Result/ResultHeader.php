@@ -1,6 +1,6 @@
 <?php
 
-namespace Geelweb\Limus\Result;
+namespace Geelweb\Litmus\Result;
 
 use Geelweb\Litmus\Result\ResultHeader\Spam;
 
@@ -8,7 +8,7 @@ class ResultHeader
 {
     public static function load($xml)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
             $dom = new \DOMDocument();

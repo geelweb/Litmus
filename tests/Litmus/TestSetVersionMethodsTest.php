@@ -13,6 +13,16 @@ use Geelweb\Litmus\Result;
  */
 class TestSetVersionTest extends \PHPUnit_Framework_TestCase
 {
+    public function setup()
+    {
+        Litmus::setAPICredentials(
+            'geelweb', 'gluchet', 'xxxxxx',
+            array(
+                'enable_fake_server' => true,
+            )
+        );
+    }
+
     /**
      * Test the versions RESTFul method
      *

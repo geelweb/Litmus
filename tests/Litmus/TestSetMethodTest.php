@@ -3,9 +3,9 @@
 namespace Geelweb\Litmus\Tests;
 
 use Geelweb\Litmus\Litmus;
-use Geelweb\Litmus\Litmus\Test;
-use Geelweb\Litmus\Litmus\Version;
-use Geelweb\Litmus\Litmus\Result;
+use Geelweb\Litmus\Test;
+use Geelweb\Litmus\Version;
+use Geelweb\Litmus\Result;
 
 /**
  * Unit test class for Litmus Test Set Methods
@@ -14,6 +14,16 @@ use Geelweb\Litmus\Litmus\Result;
  */
 class TestSetTest extends \PHPUnit_Framework_TestCase
 {
+    public function setup()
+    {
+        Litmus::setAPICredentials(
+            'geelweb', 'gluchet', 'xxxxxx',
+            array(
+                'enable_fake_server' => true,
+            )
+        );
+    }
+
     /**
      * Test the tests RESTFul method
      *

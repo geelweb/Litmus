@@ -6,7 +6,7 @@ class Image
 {
     public static function load($xml)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
             $dom = new \DOMDocument();

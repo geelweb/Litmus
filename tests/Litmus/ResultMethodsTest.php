@@ -7,6 +7,16 @@ use Geelweb\Litmus\Result;
 
 class ResultMethodsTest extends \PHPUnit_Framework_TestCase
 {
+    public function setup()
+    {
+        Litmus::setAPICredentials(
+            'geelweb', 'gluchet', 'xxxxxx',
+            array(
+                'enable_fake_server' => true,
+            )
+        );
+    }
+
     public function testResultsMethod()
     {
         $test = Litmus::getTests(1);

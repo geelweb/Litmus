@@ -1,6 +1,6 @@
 <?php
 
-use Geelweb\Litmus;
+namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\Restful\Client;
 use Geelweb\Litmus\Result;
@@ -73,7 +73,7 @@ class Version
 
     public static function load($xml, $test_id)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
             $dom = new \DOMDocument();

@@ -3,7 +3,7 @@
 namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\Restful\Client;
-use Geelweb\Litmus\Restful\Testing\Application;
+use Geelweb\Litmus\Result\Testing\Application;
 use Geelweb\Litmus\Result\Image;
 use Geelweb\Litmus\Result\ResultHeader;
 
@@ -44,7 +44,7 @@ class Result
 
     public static function load($xml, $version_id=null, $test_id=null)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
             $dom = new \DOMDocument();
