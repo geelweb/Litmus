@@ -7,7 +7,7 @@ to test email and web pages on many email clients and browsers.
 
 ## Install
 
-    composer require geelweb/litmus
+    composer require gee1web/litmus
 
 ## Examples
 

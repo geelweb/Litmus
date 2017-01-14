@@ -1,5 +1,5 @@
 {
-    "name": "gee1web/litmus-sdk",
+    "name": "gee1web/litmus",
     "description": "Sdk for the Litmus Customer RESTful API",
     "type": "library",
     "require-dev": {
