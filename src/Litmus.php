@@ -1,17 +1,9 @@
 <?php
-/**
- *
- * @package Litmus
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-/**
- *
- */
-require_once __DIR__ . '/Litmus/RESTful/Client.php';
-require_once __DIR__ . '/Litmus/Test.php';
+namespace Geelweb\Litmus;
+
+use Geelweb\Litmus\RESTful\Client;
+use Geelweb\Litmus\Test;
 
 /**
  *
@@ -26,7 +18,7 @@ class Litmus
      */
     public static function setAPICredentials($key, $username, $password, $opt=array())
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $rc->setCredentials($key, $username, $password, $opt);
     }
 
@@ -37,7 +29,7 @@ class Litmus
      */
     public static function getPageClients()
     {
-        return Litmus_Test::getClients(Litmus_Test::TYPE_PAGE);
+        return Test::getClients(Test::TYPE_PAGE);
     }
 
     /**
@@ -47,7 +39,7 @@ class Litmus
      */
     public static function getEmailClients()
     {
-        return Litmus_Test::getClients(Litmus_Test::TYPE_EMAIL);
+        return Test::getClients(Test::TYPE_EMAIL);
     }
 
     /**
@@ -58,7 +50,7 @@ class Litmus
      */
     public static function createPageTest($params)
     {
-        return Litmus_Test::create(Litmus_Test::TYPE_PAGE, $params);
+        return Test::create(Test::TYPE_PAGE, $params);
     }
 
     /**
@@ -69,7 +61,7 @@ class Litmus
      */
     public static function createEmailTest($params)
     {
-        $tests = Litmus_Test::create(Litmus_Test::TYPE_EMAIL, $params);
+        $tests = Test::create(Test::TYPE_EMAIL, $params);
         return array_pop($tests);
     }
 
@@ -81,7 +73,7 @@ class Litmus
      */
     public static function getTests($test_id=null)
     {
-        return Litmus_Test::getTests($test_id);
+        return Test::getTests($test_id);
     }
 }
 

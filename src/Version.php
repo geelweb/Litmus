@@ -1,22 +1,11 @@
 <?php
-/**
- *
- * @package Litmus
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-/**
- *
- */
-require_once __DIR__ . '/Result.php';
+namespace Geelweb\Litmus;
 
-/**
- *
- * @package Litmus
- */
-class Litmus_Version
+use Geelweb\Litmus\RESTful\Client;
+use Geelweb\Litmus\Result;
+
+class Version
 {
     private $_test_id = null;
 
@@ -31,14 +20,14 @@ class Litmus_Version
      */
     public static function getVersions($test_id, $version_id=null)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         if ($version_id === null) {
             $uri = 'tests/' . $test_id . '/versions.xml';
         } else {
             $uri = 'tests/' . $test_id . '/versions/' . $version_id . '.xml';
         }
         $res = $rc->get($uri);
-        $versions = Litmus_Version::load($res, $test_id);
+        $versions = self::load($res, $test_id);
         if ($version_id !== null) {
             $versions = array_pop($versions);
         }
@@ -53,7 +42,7 @@ class Litmus_Version
      */
     public function getResults($result_id=null)
     {
-        return Litmus_Result::getResults($this->getTestId(), $this->version, $result_id);
+        return Result::getResults($this->getTestId(), $this->version, $result_id);
     }
 
     /**
@@ -64,9 +53,9 @@ class Litmus_Version
      */
     public static function create($test_id)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->post('tests/' . $test_id . '/versions.xml');
-        $versions = Litmus_Version::load($res, $test_id);
+        $versions = self::load($res, $test_id);
         return array_pop($versions);
     }
 
@@ -75,25 +64,25 @@ class Litmus_Version
      */
     public function poll()
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->get(
             'tests/' . $this->getTestId() . '/versions/' . $this->version . '/poll.xml');
-        $versions = Litmus_Version::load($res, $this->getTestId());
+        $versions = self::load($res, $this->getTestId());
         return array_pop($versions);
     }
 
     public static function load($xml, $test_id)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
-            $dom = new DOMDocument();
+            $dom = new \DOMDocument();
             $dom->loadXML($xml);
         }
         $lst = $dom->getElementsByTagName('test_set_version');
         $col = array();
         foreach($lst as $item) {
-            $obj = new Litmus_Version();
+            $obj = new self;
             $obj->setTestId($test_id);
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;
@@ -121,7 +110,7 @@ class Litmus_Version
                 $this->$property = $spamSeedAddresses;
                 break;
             case 'results':
-                $this->$property = Litmus_Result::load($value);
+                $this->$property = Result::load($value);
                 break;
         }
     }

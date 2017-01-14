@@ -1,17 +1,10 @@
 <?php
-/**
- * Litmus Report object
- *
- * @package Litmus
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-require_once __DIR__ . '/RESTful/Client.php';
+namespace Geelweb\Litmus;
 
-/**
- * @package Litmus
- */
-class Litmus_Report
+use Geelweb\Litmus\RESTful\Client;
+
+class Report
 {
     /** @var int $id */
     public $id;
@@ -43,14 +36,14 @@ class Litmus_Report
      */
     public static function getReports($report_id = null)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         if ($report_id === null) {
             $res = $rc->get('reports.xml');
         } else {
             $res = $rc->get('reports/' . $report_id . '.xml');
         }
 
-        $tests = Litmus_Report::load($res);
+        $tests = static::load($res);
         if ($report_id !== null) {
             $tests = array_pop($tests);
         }
@@ -65,7 +58,7 @@ class Litmus_Report
      */
     public static function create($name)
     {
-        $dom = new DomDocument('1.0', null);
+        $dom = new \DomDocument('1.0', null);
         $root = $dom->createElement('report');
         $dom->appendChild($root);
 
@@ -74,10 +67,10 @@ class Litmus_Report
 
         $request = $dom->saveXML();
 
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->post('reports.xml', $request);
 
-        $tests = Litmus_Report::load($res);
+        $tests = static::load($res);
         return array_pop($tests);
     }
 
@@ -89,12 +82,12 @@ class Litmus_Report
      */
     private static function load($xml)
     {
-        $dom = new DOMDocument();
+        $dom = new \DOMDocument();
         $dom->loadXML($xml);
         $lst = $dom->getElementsByTagName('report');
         $col = array();
         foreach ($lst as $item) {
-            $obj = new Litmus_Report();
+            $obj = new self;
             /** @var \DOMNode $child */
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;

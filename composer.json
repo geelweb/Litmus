@@ -1,0 +1,25 @@
+{
+    "name": "geelweb/litmus-sdk",
+    "description": "Sdk for the Litmus Customer RESTful API",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guillaume Luchet",
+            "email": "guillaume@geelweb.org"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {"Geelweb\\Litmus\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Geelweb\\Litmus\\Tests\\": "tests/"}
+    },
+    "require": {
+        "php": "^7.0"
+    }
+}

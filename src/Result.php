@@ -1,24 +1,13 @@
 <?php
-/**
- *
- * @package Litmus
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-/**
- *
- */
-require_once __DIR__ . '/Result/Testing/Application.php';
-require_once __DIR__ . '/Result/Image.php';
-require_once __DIR__ . '/Result/ResultHeader.php';
+namespace Geelweb\Litmus;
 
-/**
- *
- * @package Litmus
- */
-class Litmus_Result
+use Geelweb\Litmus\RESTful\Client;
+use Geelweb\Litmus\Result\Testing\Application;
+use Geelweb\Litmus\Result\Image;
+use Geelweb\Litmus\Result\ResultHeader;
+
+class Result
 {
     private $_version_id;
     private $_test_id;
@@ -35,7 +24,7 @@ class Litmus_Result
      */
     public static function getResults($test_id, $version_id, $result_id=null)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         if ($result_id === null) {
             $uri = 'tests/' . $test_id
                 . '/versions/' . $version_id . '/results.xml';
@@ -46,7 +35,7 @@ class Litmus_Result
         }
 
         $res = $rc->get($uri);
-        $results = Litmus_Result::load($res, $version_id, $test_id);
+        $results = static::load($res, $version_id, $test_id);
         if ($result_id !== null) {
             $results = array_pop($results);
         }
@@ -55,16 +44,16 @@ class Litmus_Result
 
     public static function load($xml, $version_id=null, $test_id=null)
     {
-        if ($xml instanceof DOMElement) {
+        if ($xml instanceof \DOMElement) {
             $dom = $xml;
         } else {
-            $dom = new DOMDocument();
+            $dom = new \DOMDocument();
             $dom->loadXML($xml);
         }
         $lst = $dom->getElementsByTagName('result');
         $col = array();
         foreach($lst as $item) {
-            $obj = new Litmus_Result();
+            $obj = new self;
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;
                 $obj->$property = $child;
@@ -92,20 +81,20 @@ class Litmus_Result
                 $this->$property = $value->nodeValue;
                 break;
             case 'testing_application':
-                $this->$property = Litmus_Result_Testing_Application::load($value);
+                $this->$property = Application::load($value);
                 break;
             case 'result_images':
-                $this->$property = Litmus_Result_Image::load($value);
+                $this->$property = Image::load($value);
                 break;
             case 'result_headers':
-                $this->$property = Litmus_Result_ResultHeader::load($value);
+                $this->$property = ResultHeader::load($value);
                 break;
         }
     }
 
     public function update($params)
     {
-        $dom = new DOMDocument('1.0');
+        $dom = new \DOMDocument('1.0');
         $root = $dom->createElement('result');
         $dom->appendChild($root);
 
@@ -116,11 +105,11 @@ class Litmus_Result
         $root->appendChild($ps);
 
         $request = $dom->saveXML();
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->put('tests/' . $this->getTestId()
             . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '.xml', $request);
-        $test = Litmus_Result::load($res);
+        $test = self::load($res);
         return array_pop($test);
     }
 
@@ -130,7 +119,7 @@ class Litmus_Result
      */
     public function retest()
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         return $rc->post('tests/' . $this->getTestId()
             . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '/retest.xml');

@@ -1,22 +1,17 @@
 <?php
-/**
- *
- *
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-class Litmus_Test_Client
+namespace Geelweb\Litmus\Test;
+
+class Client
 {
     public static function load($xml)
     {
-        $dom = new DOMDocument;
+        $dom = new \DOMDocument;
         $dom->loadXML($xml);
         $lst = $dom->getElementsByTagName('testing_application');
         $col = array();
         foreach($lst as $item) {
-            $obj = new Litmus_Test_Client();
+            $obj = new self;
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;
                 $obj->$property = $child;

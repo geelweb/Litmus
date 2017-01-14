@@ -1,24 +1,11 @@
 <?php
-/**
- * Litmus Test object
- *
- * @package Litmus
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
+namespace Geelweb\Litmus;
 
-/**
- *
- */
-require_once __DIR__ . '/Version.php';
-require_once __DIR__ . '/Test/Client.php';
+use Geelweb\Litmus\RESTful\Client;
+use Geelweb\Litmus\Version;
+use Geelweb\Litmus\Test\Client as TestClient;
 
-/**
- *
- * @package Litmus
- */
-class Litmus_Test
+class Test
 {
     const TYPE_PAGE = 'pages';
     const TYPE_EMAIL = 'emails';
@@ -33,14 +20,14 @@ class Litmus_Test
      */
     public static function getTests($test_id=null)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         if ($test_id === null) {
             $res = $rc->get('tests.xml');
         } else {
             $res = $rc->get('tests/' . $test_id . '.xml');
         }
 
-        $tests = Litmus_Test::load($res);
+        $tests = self::load($res);
         if ($test_id !== null) {
             $tests = array_pop($tests);
         }
@@ -55,7 +42,7 @@ class Litmus_Test
      */
     public function getVersions($version_id=null)
     {
-        return Litmus_Version::getVersions($this->id, $version_id);
+        return Version::getVersions($this->id, $version_id);
     }
 
     /**
@@ -65,7 +52,7 @@ class Litmus_Test
      */
     public function createVersion()
     {
-        $version = Litmus_Version::create($this->id);
+        $version = Version::create($this->id);
         array_push($this->test_set_versions, $version);
         return $version;
     }
@@ -77,7 +64,7 @@ class Litmus_Test
      */
     public function destroy()
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         return $rc->delete('tests/' . $this->id . '.xml');
     }
 
@@ -90,7 +77,7 @@ class Litmus_Test
      */
     public function update(array $params)
     {
-        $dom = new DomDocument('1.0');
+        $dom = new \DomDocument('1.0');
         $root = $dom->createElement('test_set');
         $dom->appendChild($root);
 
@@ -107,9 +94,9 @@ class Litmus_Test
         }
 
         $request = $dom->saveXML();
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->put('tests/' . $this->id . '.xml', $request);
-        $test = Litmus_Test::load($res);
+        $test = self::load($res);
         return array_pop($test);
     }
 
@@ -123,7 +110,7 @@ class Litmus_Test
      */
     public static function create($test_type, $params)
     {
-        $dom = new DomDocument('1.0', null);
+        $dom = new \DomDocument('1.0', null);
         $root = $dom->createElement('test_set');
         $dom->appendChild($root);
 
@@ -176,10 +163,10 @@ class Litmus_Test
 
         $request = $dom->saveXML();
 
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = _Client::singleton();
         $res = $rc->post($test_type . '.xml', $request);
 
-        $test = Litmus_Test::load($res);
+        $test = self::load($res);
         return $test;
     }
 
@@ -192,9 +179,9 @@ class Litmus_Test
      */
     public static function getClients($type)
     {
-        $rc = Litmus_RESTful_Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->get($type . '/clients.xml');
-        return Litmus_Test_Client::load($res);
+        return TestClient::load($res);
     }
 
     /**
@@ -205,12 +192,12 @@ class Litmus_Test
      */
     public static function load($xml)
     {
-        $dom = new DOMDocument();
+        $dom = new \DOMDocument();
         $dom->loadXML($xml);
         $lst = $dom->getElementsByTagName('test_set');
         $col = array();
         foreach ($lst as $item) {
-            $obj = new Litmus_Test();
+            $obj = new self;
             foreach ($item->childNodes as $child) {
                 $property = $child->nodeName;
                 $obj->$property = $child;
@@ -241,7 +228,7 @@ class Litmus_Test
                 $this->$property = $value->nodeValue;
                 break;
             case 'test_set_versions':
-                $this->$property = Litmus_Version::load($value, $this->id);
+                $this->$property = Version::load($value, $this->id);
                 break;
         }
     }
