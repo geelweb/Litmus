@@ -1,23 +1,15 @@
 <?php
-/**
- * Litmus RESTful client
- *
- * @package Litmus_RESTful
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- */
 
-/**
- *
- */
-require_once __DIR__ . '/Server.php';
+namespace Geelweb\Litmus\Restful;
+
+use Geelweb\Litmus\Restful\Server;
 
 /**
  *
  * @package Litmus_RESTful
  */
-class Litmus_RESTful_Client {
+class Client
+{
     private static $_instance = null;
 
     private $_api_key = null;
@@ -69,7 +61,7 @@ class Litmus_RESTful_Client {
 
         if (isset($opts['enable_fake_server']) && $opts['enable_fake_server']) {
             $this->_fse = true;
-            $this->_server = new Litmus_RESTful_Server();
+            $this->_server = new Server();
         }
     }
 

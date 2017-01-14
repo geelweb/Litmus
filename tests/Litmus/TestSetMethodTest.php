@@ -1,25 +1,18 @@
 <?php
-/**
- *
- *
- * @package Litmus_UnitTest
- * @author Guillaume <guillaume@geelweb.org>
- * @copyright Copyright (c) 2010, Guillaume Luchet
- * @license http://opensource.org/licenses/bsd-license.php BSD License
- * @package Litmus_Test
- */
+
+namespace Geelweb\Litmus\Tests;
+
+use Geelweb\Litmus\Litmus;
+use Geelweb\Litmus\Litmus\Test;
+use Geelweb\Litmus\Litmus\Version;
+use Geelweb\Litmus\Litmus\Result;
 
 /**
- * Include test helper
- */
-require_once __DIR__ . '/../TestHelper.php';
-
-/**
- * Unit test class for Litmus Test Set Methods 
- * 
+ * Unit test class for Litmus Test Set Methods
+ *
  * @package Litmus_UnitTest
  */
-class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
+class TestSetTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test the tests RESTFul method
@@ -29,7 +22,7 @@ class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
     {
         $tests = Litmus::getTests();
         $this->assertTrue(is_array($tests));
-        $this->assertTrue($tests[0] instanceof Litmus_Test);
+        $this->assertTrue($tests[0] instanceof Test);
     }
 
     /**
@@ -40,7 +33,7 @@ class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
     {
         // Get a test and check properties
         $test = Litmus::getTests(1);
-        $this->assertTrue($test instanceof Litmus_Test);
+        $this->assertTrue($test instanceof Test);
         $this->assertEquals($test->id, 1);
         $this->assertEquals($test->name, 'Google');
         $this->assertEquals($test->service, 'page');
@@ -48,30 +41,30 @@ class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($test->public_sharing, 'false');
         $this->assertEquals($test->url_or_guid, 'http://google.com');
         $this->assertTrue(is_array($test->test_set_versions));
-        $this->assertTrue($test->test_set_versions[0] instanceof Litmus_Version);
+        $this->assertTrue($test->test_set_versions[0] instanceof Version);
 
         // try to get all the versions
         $versions = $test->getVersions();
         $this->assertTrue(is_array($versions));
-        $this->assertTrue($versions[0] instanceof Litmus_Version);
+        $this->assertTrue($versions[0] instanceof Version);
 
         // get a version of the test and check properties
         $version = $test->getVersions(1);
-        $this->assertTrue($version instanceof Litmus_Version);
+        $this->assertTrue($version instanceof Version);
         $this->assertEquals($version->version, 1);
         $this->assertEquals($version->url_or_guid, 'http://google.com');
         $this->assertEquals($version->received, 'true');
         $this->assertTrue(is_array($version->results));
-        $this->assertTrue($version->results[0] instanceof Litmus_Result);
-        
+        $this->assertTrue($version->results[0] instanceof Result);
+
         // try to get all results of the version
         $results = $version->getResults();
         $this->assertTrue(is_array($results));
-        $this->assertTrue($results[0] instanceof Litmus_Result);
+        $this->assertTrue($results[0] instanceof Result);
 
         // get a version of the test and check properties
         $result = $version->getResults(1);
-        $this->assertTrue($result instanceof Litmus_Result);
+        $this->assertTrue($result instanceof Result);
         $this->assertEquals($result->check_state, null);
         $this->assertEquals($result->error_at, null);
         $this->assertEquals($result->finished_at, null);
@@ -101,8 +94,8 @@ class Litmus_TestSetTest extends PHPUnit_Framework_TestCase
     {
         $test = Litmus::getTests(1);
         $updated_test = $test->update(array('name' => 'new Name'));
-        $this->assertTrue($updated_test instanceof Litmus_Test);
+        $this->assertTrue($updated_test instanceof Test);
         $this->assertEquals($updated_test->id, 1);
     }
 }
- 
+
