@@ -5,8 +5,8 @@
     convertWarningsToExceptions="true"
     stopOnFailure="true"
     syntaxCheck="true"
-    bootstrap="./TestHelper.php">
+    bootstrap="vendor/autoload.php">
     <testsuite name="Litmus Test Suite">
-        <directory>./</directory>
+        <directory>./tests/</directory>
     </testsuite>
 </phpunit>
