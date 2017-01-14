@@ -1,8 +1,8 @@
 <?php
 
-namespace Geelweb\Litmus\Restful;
+namespace Geelweb\Litmus\RESTful;
 
-use Geelweb\Litmus\Restful\Server;
+use Geelweb\Litmus\RESTful\Server;
 
 /**
  *

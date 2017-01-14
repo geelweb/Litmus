@@ -2,7 +2,7 @@
 
 namespace Geelweb\Litmus;
 
-use Geelweb\Litmus\Restful\Client;
+use Geelweb\Litmus\RESTful\Client;
 use Geelweb\Litmus\Result\Testing\Application;
 use Geelweb\Litmus\Result\Image;
 use Geelweb\Litmus\Result\ResultHeader;

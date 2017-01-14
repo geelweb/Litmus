@@ -1,7 +1,7 @@
 <?php
 namespace Geelweb\Litmus;
 
-use Geelweb\Litmus\Restful\Client;
+use Geelweb\Litmus\RESTful\Client;
 use Geelweb\Litmus\Version;
 use Geelweb\Litmus\Test\Client as TestClient;
 

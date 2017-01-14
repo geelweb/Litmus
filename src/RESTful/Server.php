@@ -1,6 +1,6 @@
 <?php
 
-namespace Geelweb\Litmus\Restful;
+namespace Geelweb\Litmus\RESTful;
 
 class Server
 {

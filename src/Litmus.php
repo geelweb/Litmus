@@ -2,7 +2,7 @@
 
 namespace Geelweb\Litmus;
 
-use Geelweb\Litmus\Restful\Client;
+use Geelweb\Litmus\RESTful\Client;
 use Geelweb\Litmus\Test;
 
 /**
