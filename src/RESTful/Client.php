@@ -103,7 +103,7 @@ class Client
         curl_close($this->_curl_handle);
 
         if (preg_match('/^[3|4|5][0-9]{2}$/', $this->_curl_info['http_code'])) {
-            throw new Exception(sprintf(
+            throw new \Exception(sprintf(
                 'An error occurs calling %s : %s (http_code %s) : %s',
                 $this->_curl_info['url'],
                 $this->_curl_error,
