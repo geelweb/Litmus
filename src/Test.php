@@ -20,6 +20,7 @@ class Test
      */
     public static function getTests($test_id=null)
     {
+        /** @var Client $rc */
         $rc = Client::singleton();
         if ($test_id === null) {
             $res = $rc->get('tests.xml');
