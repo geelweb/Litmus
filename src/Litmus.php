@@ -3,27 +3,28 @@
 namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\RESTful\Client;
-use Geelweb\Litmus\Test;
 
 /**
- *
- * @package Litmus
+ * Class Litmus
+ * @package Geelweb\Litmus
  */
 class Litmus
 {
     /**
      * Initialize the RESTful Client with the API credentials
-     *
-     * @return void
+     * @param string $key
+     * @param string $username
+     * @param string $password
+     * @param array $opt
      */
-    public static function setAPICredentials($key, $username, $password, $opt=array())
+    public static function setAPICredentials($key, $username, $password, $opt = array())
     {
         $rc = Client::singleton();
         $rc->setCredentials($key, $username, $password, $opt);
     }
 
     /**
-     * Get the availables page clients
+     * Get the available page clients
      *
      * @return array
      */
@@ -33,7 +34,7 @@ class Litmus
     }
 
     /**
-     * Get the availables email clients
+     * Get the available email clients
      *
      * @return array
      */
@@ -44,9 +45,8 @@ class Litmus
 
     /**
      * Create a new web page test
-     *
      * @param array $params
-     * @return Litmus_Test
+     * @return array
      */
     public static function createPageTest($params)
     {
@@ -55,9 +55,8 @@ class Litmus
 
     /**
      * Create a new email test
-     *
      * @param array $params
-     * @return Litmus_Test
+     * @return Test
      */
     public static function createEmailTest($params)
     {
@@ -68,10 +67,10 @@ class Litmus
     /**
      * Return the list of the available tests or a single test if a test id
      * is provide
-     *
-     * @return mixed
+     * @param int $test_id
+     * @return array|Test
      */
-    public static function getTests($test_id=null)
+    public static function getTests($test_id = null)
     {
         return Test::getTests($test_id);
     }

@@ -24,7 +24,7 @@ class TestSetVersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the versions RESTFul method
+     * Test the versions RESTful method
      *
      */
     public function testVersionsMethod()
@@ -36,7 +36,7 @@ class TestSetVersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the versions/show RESTFul method
+     * Test the versions/show RESTful method
      *
      */
     public function testVersionsShowMethod()
@@ -57,7 +57,7 @@ class TestSetVersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the versions/create RESTFul Method
+     * Test the versions/create RESTful Method
      *
      */
     public function testVersionsCreateMethod()
@@ -70,7 +70,7 @@ class TestSetVersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the versions/poll RESTFul method
+     * Test the versions/poll RESTful method
      *
      */
     public function testVersionsPollMethod()

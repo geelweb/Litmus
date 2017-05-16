@@ -3,8 +3,11 @@
 namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\RESTful\Client;
-use Geelweb\Litmus\Result;
 
+/**
+ * Class Version
+ * @package Geelweb\Litmus
+ */
 class Version
 {
     private $_test_id = null;
@@ -14,11 +17,11 @@ class Version
      * version of a test. Return an array of Litmus_Version objects or a
      * single Litmus_version object if a version_id is provide.
      *
-     * @param integer $test_id Id of the test
-     * @param integer $version_id Id of the version to retrieve
-     * @return mixed
+     * @param int $test_id Id of the test
+     * @param int $version_id Id of the version to retrieve
+     * @return array|Version
      */
-    public static function getVersions($test_id, $version_id=null)
+    public static function getVersions($test_id, $version_id = null)
     {
         $rc = Client::singleton();
         if ($version_id === null) {
@@ -37,19 +40,20 @@ class Version
     /**
      * Get the test version result
      *
-     * @param integer $result_id Id of the result to retrieve
-     * @return mixed
+     * @param int $result_id Id of the result to retrieve
+     * @return array|Result
      */
-    public function getResults($result_id=null)
+    public function getResults($result_id = null)
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         return Result::getResults($this->getTestId(), $this->version, $result_id);
     }
 
     /**
      * Implements the versions/create method to create a new version of a test
      *
-     * @param integer $test_id Id of the test
-     * @return mixed
+     * @param int $test_id Id of the test
+     * @return Version
      */
     public static function create($test_id)
     {
@@ -65,12 +69,18 @@ class Version
     public function poll()
     {
         $rc = Client::singleton();
+        /** @noinspection PhpUndefinedFieldInspection */
         $res = $rc->get(
             'tests/' . $this->getTestId() . '/versions/' . $this->version . '/poll.xml');
         $versions = self::load($res, $this->getTestId());
         return array_pop($versions);
     }
 
+    /**
+     * @param string $xml
+     * @param int $test_id
+     * @return array
+     */
     public static function load($xml, $test_id)
     {
         if ($xml instanceof \DOMElement) {
@@ -93,6 +103,10 @@ class Version
         return $col;
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch($property) {
@@ -105,6 +119,7 @@ class Version
                 $spamSeedAddresses = array();
                 $list = $value->getElementsByTagName('spam_seed_address');
                 for ($i=0; $i<$list->length; $i++) {
+                    /** @noinspection PhpUndefinedMethodInspection */
                     $spamSeedAddresses[] = $list->item($i)->nodeValue;
                 }
                 $this->$property = $spamSeedAddresses;
@@ -115,11 +130,13 @@ class Version
         }
     }
 
+    /** @param int $id */
     public function setTestId($id)
     {
         $this->_test_id = $id;
     }
 
+    /** @return int */
     public function getTestId()
     {
         return $this->_test_id;

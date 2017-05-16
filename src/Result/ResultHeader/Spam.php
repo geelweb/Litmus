@@ -2,8 +2,16 @@
 
 namespace Geelweb\Litmus\Result\ResultHeader;
 
+/**
+ * Class Spam
+ * @package Geelweb\Litmus\Result\ResultHeader
+ */
 class Spam
 {
+    /**
+     * @param string $xml
+     * @return Spam
+     */
     public static function load($xml)
     {
         if ($xml instanceof \DOMElement) {
@@ -20,6 +28,10 @@ class Spam
         return $obj;
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch ($property) {

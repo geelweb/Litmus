@@ -2,6 +2,10 @@
 
 namespace Geelweb\Litmus\RESTful;
 
+/**
+ * Class Server
+ * @package Geelweb\Litmus\RESTful
+ */
 class Server
 {
     public $result;
@@ -15,8 +19,15 @@ class Server
         $this->info = null;
     }
 
-    public function perform($method, $uri, $request=null)
+    /**
+     * @param $method string
+     * @param $uri string
+     * @param $request string
+     * @return bool|string
+     */
+    public function perform($method, $uri, $request = null)
     {
+        unset($request);
         $this->_init();
 //        echo 'METHOD : ', $method, "\n";
 //        echo 'URI : ', $uri, "\n";
@@ -52,8 +63,6 @@ class Server
                 return $this->result;
             }
         }
-
-
+        return false;
     }
 }
-

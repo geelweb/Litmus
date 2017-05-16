@@ -2,9 +2,12 @@
 namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\RESTful\Client;
-use Geelweb\Litmus\Version;
 use Geelweb\Litmus\Test\Client as TestClient;
 
+/**
+ * Class Test
+ * @package Geelweb\Litmus
+ */
 class Test
 {
     const TYPE_PAGE = 'pages';
@@ -16,9 +19,9 @@ class Test
      * Litmus_Test object if a test_id is provide
      *
      * @param integer $test_id Id of the test to retrieve
-     * @return mixed
+     * @return array|Test
      */
-    public static function getTests($test_id=null)
+    public static function getTests($test_id = null)
     {
         /** @var Client $rc */
         $rc = Client::singleton();
@@ -39,21 +42,24 @@ class Test
      * Get the versions of the test
      *
      * @param integer $version_id Id of the version to retrieve
-     * @return mixed
+     * @return Version
      */
-    public function getVersions($version_id=null)
+    public function getVersions($version_id = null)
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         return Version::getVersions($this->id, $version_id);
     }
 
     /**
      * Create a new version of the test
      *
-     * @return Litmus_Version
+     * @return Version
      */
     public function createVersion()
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         $version = Version::create($this->id);
+        /** @noinspection PhpUndefinedFieldInspection */
         array_push($this->test_set_versions, $version);
         return $version;
     }
@@ -66,15 +72,16 @@ class Test
     public function destroy()
     {
         $rc = Client::singleton();
+        /** @noinspection PhpUndefinedFieldInspection */
         return $rc->delete('tests/' . $this->id . '.xml');
     }
 
     /**
      * Implement the test/update method
      *
-     * @params $param properties to update
+     * @param array $params properties to update
      * @todo Update the current object instead of return a new one
-     * @return boolean
+     * @return bool
      */
     public function update(array $params)
     {
@@ -96,18 +103,19 @@ class Test
 
         $request = $dom->saveXML();
         $rc = Client::singleton();
+        /** @noinspection PhpUndefinedFieldInspection */
         $res = $rc->put('tests/' . $this->id . '.xml', $request);
         $test = self::load($res);
         return array_pop($test);
     }
 
     /**
-     * Implemet the pages/create ane emails/create methods to ceate a new web
+     * Implement the pages/create ane emails/create methods to ceate a new web
      * page test or a new email test.
      *
      * @param string $test_type Type of the test (TYPE_PAGE||TYPE_EMAIL)
      * @param array $params Parameters of the test
-     * @return Litmus_Test
+     * @return array
      */
     public static function create($test_type, $params)
     {
@@ -164,18 +172,18 @@ class Test
 
         $request = $dom->saveXML();
 
-        $rc = _Client::singleton();
+        $rc = Client::singleton();
         $res = $rc->post($test_type . '.xml', $request);
 
-        $test = self::load($res);
-        return $test;
+        $tests = self::load($res);
+        return $tests;
     }
 
     /**
      * Implement the pages/clients and emails/clients methods to get the
      * available clients for web pages and email tests
      *
-     * @param string the type of clients to retrieve (TYPE_PAGE|TYPE_EMAIL)
+     * @param string $type type of clients to retrieve (TYPE_PAGE|TYPE_EMAIL)
      * @return array
      */
     public static function getClients($type)
@@ -186,10 +194,10 @@ class Test
     }
 
     /**
-     * Load a Litmus_Test object or collection from an xml content.
+     * Load a Test object or collection from an xml content.
      *
      * @param string $xml XML content
-     * @return mixed
+     * @return array
      */
     public static function load($xml)
     {
@@ -229,6 +237,7 @@ class Test
                 $this->$property = $value->nodeValue;
                 break;
             case 'test_set_versions':
+                /** @noinspection PhpUndefinedFieldInspection */
                 $this->$property = Version::load($value, $this->id);
                 break;
         }

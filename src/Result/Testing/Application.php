@@ -2,8 +2,16 @@
 
 namespace Geelweb\Litmus\Result\Testing;
 
+/**
+ * Class Application
+ * @package Geelweb\Litmus\Result\Testing
+ */
 class Application
 {
+    /**
+     * @param string $xml
+     * @return Application
+     */
     public static function load($xml)
     {
         if ($xml instanceof \DOMElement) {
@@ -20,6 +28,10 @@ class Application
         return $obj;
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch ($property) {
