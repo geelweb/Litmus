@@ -2,8 +2,16 @@
 
 namespace Geelweb\Litmus\Result;
 
+/**
+ * Class Image
+ * @package Geelweb\Litmus\Result
+ */
 class Image
 {
+    /**
+     * @param string $xml
+     * @return array
+     */
     public static function load($xml)
     {
         if ($xml instanceof \DOMElement) {
@@ -26,6 +34,10 @@ class Image
 
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch ($property) {

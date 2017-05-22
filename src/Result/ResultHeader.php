@@ -4,8 +4,16 @@ namespace Geelweb\Litmus\Result;
 
 use Geelweb\Litmus\Result\ResultHeader\Spam;
 
+/**
+ * Class ResultHeader
+ * @package Geelweb\Litmus\Result
+ */
 class ResultHeader
 {
+    /**
+     * @param string $xml
+     * @return array
+     */
     public static function load($xml)
     {
         if ($xml instanceof \DOMElement) {
@@ -28,6 +36,10 @@ class ResultHeader
 
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch ($property) {

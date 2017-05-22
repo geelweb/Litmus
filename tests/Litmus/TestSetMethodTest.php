@@ -25,7 +25,7 @@ class TestSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the tests RESTFul method
+     * Test the tests RESTful method
      *
      */
     public function testTestsMethod()
@@ -36,7 +36,7 @@ class TestSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the tests/show RESTFul method
+     * Test the tests/show RESTful method
      *
      */
     public function testTestsShowMethod()
@@ -86,7 +86,7 @@ class TestSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the tests/destroy RESTFul method
+     * Test the tests/destroy RESTful method
      *
      */
     public function testTestsDestroyMethod()
@@ -97,7 +97,7 @@ class TestSetTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the tests/update RESTFul method
+     * Test the tests/update RESTful method
      *
      */
     public function testTestsUpdateMethod()

@@ -4,6 +4,10 @@ namespace Geelweb\Litmus;
 
 use Geelweb\Litmus\RESTful\Client;
 
+/**
+ * Class Report
+ * @package Geelweb\Litmus
+ */
 class Report
 {
     /** @var int $id */
@@ -32,7 +36,7 @@ class Report
      * Litmus_Report object if a report_id is provided
      *
      * @param integer $report_id Id of the report to retrieve
-     * @return Litmus_Report[]|Litmus_Report
+     * @return Report[]|Report
      */
     public static function getReports($report_id = null)
     {
@@ -54,7 +58,7 @@ class Report
      * Implements the reports/create method to create a new report
      *
      * @param string $name The name of the report
-     * @return Litmus_Report
+     * @return Report
      */
     public static function create($name)
     {

@@ -2,8 +2,16 @@
 
 namespace Geelweb\Litmus\Test;
 
+/**
+ * Class Client
+ * @package Geelweb\Litmus\Test
+ */
 class Client
 {
+    /**
+     * @param string $xml
+     * @return array
+     */
     public static function load($xml)
     {
         $dom = new \DOMDocument;
@@ -21,6 +29,10 @@ class Client
         return $col;
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch ($property) {

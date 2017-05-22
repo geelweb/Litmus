@@ -1,19 +1,21 @@
 <?php
 
 namespace Geelweb\Litmus\RESTful;
-
-use Geelweb\Litmus\RESTful\Server;
+use Exception;
 
 /**
- *
- * @package Litmus_RESTful
+ * Class Client
+ * @package Geelweb\Litmus\RESTful
  */
 class Client
 {
     private static $_instance = null;
 
+    /** @var string $_api_key */
     private $_api_key = null;
+    /** @var string $_api_username */
     private $_api_username = null;
+    /** @var string _api_password */
     private $_api_password = null;
 
     private $_curl_handle = null;
@@ -23,21 +25,18 @@ class Client
     private $_curl_info = null;
 
     private $_fse = false;
+    /** @var Server $_server */
     private $_server = null;
 
-    /**
-     * Constructor
-     *
-     * @return void
-     */
+    /** Constructor */
     private function __construct()
     {
     }
 
     /**
-     * Singleton : return the current instance of the Litmus_RESTful_Client
+     * Singleton : return the current instance of the Client
      *
-     * @return Litmus_RESTful_Client
+     * @return Client
      */
     public static function singleton()
     {
@@ -51,6 +50,10 @@ class Client
     /**
      * Set the Litmus API credentials
      *
+     * @param $key string
+     * @param $username string
+     * @param $password string
+     * @param array $opts array
      * @return void
      */
     public function setCredentials($key, $username, $password, $opts = array())
@@ -68,6 +71,7 @@ class Client
     /**
      * Build the REST url
      *
+     * @param $uri string
      * @return string
      */
     private function _getApiUrl($uri)
@@ -78,6 +82,7 @@ class Client
     /**
      * Init the curl session
      *
+     * @param $uri string
      * @return void
      */
     private function _initCurlSession($uri)
@@ -91,8 +96,8 @@ class Client
 
     /**
      * Perform the curl session
-     *
      * @return void
+     * @throws Exception
      */
     private function _performCurlSession()
     {
@@ -103,7 +108,7 @@ class Client
         curl_close($this->_curl_handle);
 
         if (preg_match('/^[3|4|5][0-9]{2}$/', $this->_curl_info['http_code'])) {
-            throw new \Exception(sprintf(
+            throw new Exception(sprintf(
                 'An error occurs calling %s : %s (http_code %s) : %s',
                 $this->_curl_info['url'],
                 $this->_curl_error,
@@ -113,12 +118,15 @@ class Client
     }
 
     /**
-     * Perform a fake session calling the Litmus_RESTful_Server to get a fake
+     * Perform a fake session calling the Server to get a fake
      * result.
      *
+     * @param $method string
+     * @param $uri string
+     * @param null $request
      * @return void
      */
-    private function _performFakeSession($method, $uri, $request=null)
+    private function _performFakeSession($method, $uri, $request = null)
     {
         $this->_curl_result  = $this->_server->perform($method, $uri, $request);
         $this->_curl_error = $this->_server->error;
@@ -128,7 +136,7 @@ class Client
     /**
      * Get the result of the last performed curl session
      *
-     * @return mixed
+     * @return string
      */
     public function getLastCurlResult()
     {
@@ -138,7 +146,7 @@ class Client
     /**
      * Get the error of the last performed curl session
      *
-     * @return mixed
+     * @return string
      */
     public function getLastCurlError()
     {
@@ -146,9 +154,9 @@ class Client
     }
 
     /**
-     * Get the infor,ations about the last performed curl session
+     * Get the information about the last performed curl session
      *
-     * @return mixed
+     * @return string
      */
     public function getLastCurlInfo()
     {
@@ -158,7 +166,8 @@ class Client
     /**
      * Perform a curl GET request
      *
-     * @return mixed
+     * @param $uri string
+     * @return string
      */
     public function get($uri)
     {
@@ -174,9 +183,11 @@ class Client
     /**
      * Perform a curl POST request
      *
-     * @return mixed
+     * @param $uri string
+     * @param $request string
+     * @return string
      */
-    public function post($uri, $request=null)
+    public function post($uri, $request = null)
     {
         if ($this->_fse) {
             $this->_performFakeSession('POST', $uri, $request);
@@ -206,9 +217,11 @@ class Client
     /**
      * Perform a curl PUT request
      *
-     * @return mixed
+     * @param $uri string
+     * @param $request string
+     * @return string
      */
-    public function put($uri, $request=null)
+    public function put($uri, $request = null)
     {
         if ($this->_fse) {
             $this->_performFakeSession('PUT', $uri, $request);
@@ -226,7 +239,8 @@ class Client
     /**
      * Perform a curl DELETE request
      *
-     * @return mixed
+     * @param $uri string
+     * @return string
      */
     public function delete($uri)
     {

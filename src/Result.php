@@ -7,9 +7,15 @@ use Geelweb\Litmus\Result\Testing\Application;
 use Geelweb\Litmus\Result\Image;
 use Geelweb\Litmus\Result\ResultHeader;
 
+/**
+ * Class Result
+ * @package Geelweb\Litmus
+ */
 class Result
 {
+    /** @var int $_version_id */
     private $_version_id;
+    /** @var int $_test_id */
     private $_test_id;
 
     /**
@@ -17,10 +23,10 @@ class Result
      * result of a version of a test. Return an array of Litmus_Result objects
      * or a single Litmus_Result object if a version_id is provide.
      *
-     * @param integer $test_id Id of the test
-     * @param integer $version_id Id of the version
-     * @param integer $result_id Id of the result to retrieve
-     * @return mixed
+     * @param int $test_id Id of the test
+     * @param int $version_id Id of the version
+     * @param int $result_id Id of the result to retrieve
+     * @return array|Result
      */
     public static function getResults($test_id, $version_id, $result_id=null)
     {
@@ -42,7 +48,13 @@ class Result
         return $results;
     }
 
-    public static function load($xml, $version_id=null, $test_id=null)
+    /**
+     * @param string $xml
+     * @param int $version_id
+     * @param int $test_id
+     * @return array
+     */
+    public static function load($xml, $version_id = null, $test_id = null)
     {
         if ($xml instanceof \DOMElement) {
             $dom = $xml;
@@ -65,6 +77,10 @@ class Result
         return $col;
     }
 
+    /**
+     * @param string $property
+     * @param mixed $value
+     */
     public function __set($property, $value)
     {
         switch($property) {
@@ -92,6 +108,10 @@ class Result
         }
     }
 
+    /**
+     * @param array $params
+     * @return Result
+     */
     public function update($params)
     {
         $dom = new \DOMDocument('1.0');
@@ -106,6 +126,7 @@ class Result
 
         $request = $dom->saveXML();
         $rc = Client::singleton();
+        /** @noinspection PhpUndefinedFieldInspection */
         $res = $rc->put('tests/' . $this->getTestId()
             . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '.xml', $request);
@@ -116,30 +137,36 @@ class Result
     /**
      * Implement the results/retest method
      *
+     * @return string
      */
     public function retest()
     {
         $rc = Client::singleton();
+        /** @noinspection PhpUndefinedFieldInspection */
         return $rc->post('tests/' . $this->getTestId()
             . '/versions/' . $this->getVersionId()
             . '/results/' . $this->id . '/retest.xml');
     }
 
+    /** @param int $id */
     public function setVersionId($id)
     {
         $this->_version_id = $id;
     }
 
+    /** @return int */
     public function getVersionId()
     {
         return $this->_version_id;
     }
 
+    /** @param int $id */
     public function setTestId($id)
     {
         $this->_test_id = $id;
     }
 
+    /** @return int */
     public function getTestId()
     {
         return $this->_test_id;
