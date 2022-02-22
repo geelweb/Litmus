@@ -4,10 +4,11 @@ namespace Geelweb\Litmus\Tests\Litmus;
 
 use Geelweb\Litmus\Litmus;
 use Geelweb\Litmus\Result;
+use PHPUnit\Framework\TestCase;
 
-class ResultMethodsTest extends \PHPUnit_Framework_TestCase
+class ResultMethodsTest extends TestCase
 {
-    public function setup()
+    public function setup(): void
     {
         Litmus::setAPICredentials(
             'geelweb', 'gluchet', 'xxxxxx',

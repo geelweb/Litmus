@@ -6,15 +6,16 @@ use Geelweb\Litmus\Litmus;
 use Geelweb\Litmus\Test;
 use Geelweb\Litmus\Version;
 use Geelweb\Litmus\Result;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test class for Litmus Test Set Methods
  *
  * @package Litmus_UnitTest
  */
-class TestSetTest extends \PHPUnit_Framework_TestCase
+class TestSetTest extends TestCase
 {
-    public function setup()
+    public function setup(): void
     {
         Litmus::setAPICredentials(
             'geelweb', 'gluchet', 'xxxxxx',

@@ -5,15 +5,16 @@ namespace Geelweb\Litmus\Tests;
 use Geelweb\Litmus\Litmus;
 use Geelweb\Litmus\Version;
 use Geelweb\Litmus\Result;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test class for Litmus Test Set Version Methods
  *
  * @package Litmus_UnitTest
  */
-class TestSetVersionTest extends \PHPUnit_Framework_TestCase
+class TestSetVersionTest extends TestCase
 {
-    public function setup()
+    public function setup(): void
     {
         Litmus::setAPICredentials(
             'geelweb', 'gluchet', 'xxxxxx',
